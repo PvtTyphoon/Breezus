@@ -1,0 +1,14 @@
+{
+	"env": {
+		"es6": true,
+		"node": true
+	},
+	"extends": "prettier",
+	"parserOptions": {
+		"sourceType": "module",
+		"ecmaversion": 6
+	},
+	"rules": {
+		"indent": ["warn", 2]
+	}
+}
