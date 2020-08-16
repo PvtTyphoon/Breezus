@@ -1,0 +1,58 @@
+{
+	"ownerID": ["488575209742532618", "254367144186216449"],
+	"logID": "582825622930456587",
+	"clients": [
+		{
+			"username": "Breezus",
+			"id": "606507363654172673",
+			"prefix": ".",
+			"branch": "stable",
+			"standardInvite": "https://discord.com/oauth2/authorize?client_id=606507363654172673&scope=bot",
+			"roleInvite": "https://discord.com/oauth2/authorize?client_id=606507363654172673&permissions=388160&scope=bot",
+			"uuid": "313ea1ea-0e02-4dd1-9409-167390d14176"
+		},
+		{
+			"username": "Breezus Unstable",
+			"id": "716747468116852838",
+			"prefix": ".",
+			"branch": "unstable",
+			"standardInvite": "https://discord.com/oauth2/authorize?client_id=716747468116852838&scope=bot",
+			"roleInvite": "https://discord.com/oauth2/authorize?client_id=716747468116852838&permissions=388160&scope=bot",
+			"uuid": "2e5837b5-9813-46a2-ba87-9e93f6a41c63"
+		}
+	],
+	"apiRoot": "http://ws.audioscrobbler.com/2.0/",
+	"keys": [
+		"615322f0047e12aedbc610d9d71f7430",
+		"6c0b0f52fc2cb0a9168bf3699ce02707",
+		"158a796a712c6cc5fa51735099751369",
+		"0b759df0f159f6169dbf84df03bf836b"
+	],
+	"imgurID": "48367471137eb44",
+	"users": [
+		"TyphoonsNotABot",
+		"KremciaKay",
+		"dragonmont",
+		"FaroeRSH",
+		"twanan",
+		"bojacktheclown",
+		"draciel17",
+		"AlCaezar",
+		"senlup",
+		"TSwiftie1298",
+		"dreamfyrre",
+		"Galvestonnative",
+		"s3e20",
+		"Francochamps",
+		"bonkabinkleton",
+		"Finn12344",
+		"Devourerofstuff",
+		"lastdirewolf",
+		"BethB143",
+		"OhhStefan",
+		"Hmurax",
+		"waste_yute",
+		"cuddlefishcat",
+		"roberto613_"
+	]
+}
