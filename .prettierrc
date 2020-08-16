@@ -13,6 +13,6 @@
 	"tabWidth": 2,
 	"trailingComma": "all",
 	"useTabs": true,
-	"vueIndentScriptAndStyle": false,
+	"vueIndentScriptAndStyle": true,
 	"printWidth": 80
 }
