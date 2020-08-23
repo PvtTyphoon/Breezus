@@ -57,7 +57,7 @@ module.exports = class playsCommand extends BreezusCommand {
         .addField("Last.fm Page", `[Page Link.](${data.url})`, false);
       message.channel.send({ embed });
     } catch (err) {
-      handleError(err);
+      handleError(err, message);
       return;
     }
   }
