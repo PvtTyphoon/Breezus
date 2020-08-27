@@ -14,8 +14,10 @@ module.exports = class artistChartCommand extends BreezusCommand {
 			aliases: ["artistchart", "artistscharts"],
 			group: "charts",
 			memberName: "artists",
-			description:
-				"Generates a pie chart of the top 5 artists from the last 7 days.",
+			description: stripIndents`
+			Generates a pie chart of the top 5 artists from the last 7 days.
+			\`\`\`Example Usage: .artists <user>\`\`\`
+			`,
 		});
 	}
 

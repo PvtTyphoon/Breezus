@@ -4,6 +4,7 @@ const solenolyrics = require("solenolyrics");
 const { api } = require("../../assets/json/errors.json");
 const { shorten } = require("../../util/TextMods");
 const { colourGen } = require("../../util/Util");
+const { stripIndents } = require("common-tags");
 
 module.exports = class lyricsCommand extends BreezusCommand {
 	constructor(client) {
@@ -12,8 +13,10 @@ module.exports = class lyricsCommand extends BreezusCommand {
 			aliases: ["lyric"],
 			group: "info",
 			memberName: "lyrics",
-			description: 
-				"Fetches the lyrics for a song.",
+			description: stripIndents`
+			Fetches the lyrics for a song.
+			\`\`\`Example Usage: .lyrics [song name]\`\`\`
+			`,
 		});
 	}
 

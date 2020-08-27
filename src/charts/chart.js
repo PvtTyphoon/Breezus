@@ -18,8 +18,10 @@ module.exports = class chartCommand extends BreezusCommand {
 			aliases: ["charts", "grid"],
 			group: "charts",
 			memberName: "chart",
-			description:
-				"Generates a chart with the top albums of a user.  Syntax: `.chart <3x3|4x4|5x5|6x6|7x7|8x8|9x9> <7day|1m|3m|6m|1y|overall> | <username>`  Grid sizes can be shortened. For example: `3x3` can be parses as `3` and `5x5` can also be shortened to `5`.  This command defaults to a `5x5` grid for the last `7 days`.  The command can either use the message author's username or one after a |.  For Example: `.chart 3x3 7d | TyphoonsNotABot`  Example 2:  `.chart 5 | TyphoonsNotABot`  Example 3:  `.chart | TyphoonsNotABot`",
+			description: stripIndents`
+			Generates a chart with the top albums of a user. 
+			\`\`\`Example Usage: .chart <3x3|4x4|5x5|6x6|7x7|8x8|9x9> <7day|30day|3month|6month|12month|overall> | <use>\`\`\`
+			`,
 		});
 	}
 

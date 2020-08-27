@@ -12,8 +12,10 @@ module.exports = class convertCommand extends BreezusCommand {
 			aliases: ["conversion", "units"],
 			group: "misc",
 			memberName: "convert",
-			description:
-				"Conversion tool for multiple different units. List of units: <https://gist.github.com/PvtTyphoon/23d7fe22347a7436f384074c5eb188b6>",
+			description: stripIndents`
+			Conversion tool for multiple different units. List of units: <https://gist.github.com/PvtTyphoon/23d7fe22347a7436f384074c5eb188b6>
+			\`\`\`Example Usage: .convert [unit] [conversion unit] [value]\`\`\`
+			`,
 		});
 	}
 

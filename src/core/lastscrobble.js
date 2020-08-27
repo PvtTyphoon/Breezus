@@ -14,8 +14,10 @@ module.exports = class lastScrobbleCommand extends BreezusCommand {
 			aliases: ["la"],
 			group: "core",
 			memberName: "lastscrobble",
-			description: 
-				"Displays the time a user last scrobbled.",
+			description: stripIndents`
+			Displays the time a user last scrobbled.
+			\`\`\`Example Usage: .la <user>\`\`\`
+			`,
 		});
 	}
 

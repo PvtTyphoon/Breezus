@@ -13,8 +13,10 @@ module.exports = class averageCommand extends BreezusCommand {
 			aliases: ["averages", "avg", "sa", "averagescrobbles"],
 			group: "core",
 			memberName: "average",
-			description:
-				"Displays the average scrobble count for users between multiple time periods.",
+			description: stripIndents`
+			Displays the average scrobble count for users between multiple time periods.
+			\`\`\`Example Usage: .averages <user>\`\`\`
+			`,
 		});
 	}
 

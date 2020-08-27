@@ -15,8 +15,10 @@ module.exports = class statsCommand extends BreezusCommand {
 			aliases: ["statistics"],
 			group: "info",
 			memberName: "stats",
-			description: 
-				"Displays statistics for a user in a given time period.",
+			description: stripIndents`
+			Displays statistics for a user in a given time period.
+			\`\`\`Example Usage: .stats <7day|30day|3months|6months|year|overall> | <user>\`\`\`
+			`,
 		});
 	}
 

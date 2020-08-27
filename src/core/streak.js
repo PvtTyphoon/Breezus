@@ -13,8 +13,10 @@ module.exports = class streakCommand extends BreezusCommand {
 			aliases: ["streaks", "combo", "combos", "listeningstreaks"],
 			group: "core",
 			memberName: "streak",
-			description:
-				"Displays an embed with the listening streaks for artists, albums, and tracks.",
+			description: stripIndents`
+			Displays an embed with the listening streaks for artists, albums, and tracks.
+			\`\`\`Example Usage: .streak <user>\`\`\`
+			`,
 		});
 	}
 

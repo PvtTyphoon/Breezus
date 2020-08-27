@@ -14,8 +14,10 @@ module.exports = class lfmCommand extends BreezusCommand {
 			aliases: ["fm", "lastfm"],
 			group: "core",
 			memberName: "lastfm",
-			description:
-				"Displays an embed with the currently playing song and other basic data.",
+			description: stripIndents`
+			Displays an embed with the currently playing song and other basic data.
+			\`\`\`Example Usage: .lfm <user>\`\`\`
+			`,
 		});
 	}
 

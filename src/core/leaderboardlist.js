@@ -6,6 +6,7 @@ const unixtime = require("unixtime");
 const { handleError } = require("../../errorHandling/errorHandling");
 const { apiRoot, keys, users } = require("../../config.json");
 const now = unixtime();
+const { stripIndents } = require("common-tags");
 let medals = {
 	"0": "🥇  ",
 	"1": "🥈  ",
@@ -41,8 +42,10 @@ module.exports = class leaderboardListCommand extends BreezusCommand {
 			aliases: ["lbl"],
 			group: "core",
 			memberName: "leaderboardlist",
-			description: 
-				"Generates a leaderboard for the past week.",
+			description: stripIndents`
+			Generates a leaderboard.
+			\`\`\`Example Usage: .lbl <day|7day|30day|3month|6month|12year|overall>\`\`\`
+			`,
 		});
 	}
 

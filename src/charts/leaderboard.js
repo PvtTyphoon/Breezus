@@ -6,6 +6,7 @@ const { generateBarChart } = require("../../util/charts/barChart");
 const { handleError } = require("../../errorHandling/errorHandling");
 const { apiRoot, keys, users } = require("../../config.json");
 const now = unixtime();
+const { stripIndents } = require("common-tags");
 
 module.exports = class leaderboardCommand extends BreezusCommand {
 	constructor(client) {
@@ -14,8 +15,10 @@ module.exports = class leaderboardCommand extends BreezusCommand {
 			aliases: ["lb"],
 			group: "charts",
 			memberName: "leaderboard",
-			description: 
-				"Generates a scrobble leaderboard bar chart for the past week.",
+			description: stripIndents`
+			Generates a scrobble leaderboard bar chart.
+			\`\`\`Example Usage: .lb <day|7day|30day|3month|6month|year|overall>\`\`\`			
+			`,
 		});
 	}
 

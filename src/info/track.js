@@ -12,8 +12,10 @@ module.exports = class trackCommand extends BreezusCommand {
 			name: "track",
 			group: "info",
 			memberName: "track",
-			description: 
-				"Searches information for a track on last.fm.",
+			description: stripIndents`
+			Searches for track information on last.fm.
+			\`\`\`Example Usage: .track [track name]\`\`\`
+			`,
 		});
 	}
 

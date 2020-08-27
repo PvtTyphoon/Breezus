@@ -10,8 +10,10 @@ module.exports = class weatherCommand extends BreezusCommand {
 			aliases: ["w"],
 			group: "misc",
 			memberName: "weather",
-			description: 
-				"MSN weather service lookup.",
+			description: stripIndents`
+			MSN weather service lookup.
+			\`\`\`Example Usage: .w [location]\`\`\`
+			`,
 		});
 	}
 

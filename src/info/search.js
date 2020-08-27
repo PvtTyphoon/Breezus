@@ -14,8 +14,10 @@ module.exports = class searchCommand extends BreezusCommand {
 			aliases: ["page"],
 			group: "info",
 			memberName: "search",
-			description:
-				"Searches for an artist, album, or track on last.fm.  Example usage: `.search album After Hours`",
+			description: stripIndents`
+			Searches for an artist, album, or track on last.fm and links to it's page.
+			\`\`\`Example Usage: .search [artist|album|track] [query]\`\`\`
+			`,
 		});
 	}
 

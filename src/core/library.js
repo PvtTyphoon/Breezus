@@ -4,6 +4,7 @@ const rp = require("request-promise");
 const { getUser } = require("../../util/lastfmUserGetter");
 const { handleError } = require("../../errorHandling/errorHandling");
 const { apiRoot, keys, imgurID } = require("../../config.json");
+const { stripIndents } = require("common-tags");
 
 module.exports = class libraryCommand extends BreezusCommand {
 	constructor(client) {
@@ -12,8 +13,10 @@ module.exports = class libraryCommand extends BreezusCommand {
 			aliases: ["lib"],
 			group: "core",
 			memberName: "library",
-			description: 
-				"Displays library statistics for a user.",
+			description: stripIndents`
+			Displays library statistics for a user.
+			\`\`\`Example Usage: .lib <user>\`\`\`
+			`,
 		});
 	}
 

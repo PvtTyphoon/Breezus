@@ -13,8 +13,10 @@ module.exports = class recentTracksCommand extends BreezusCommand {
 			aliases: ["rt", "recent", "recents"],
 			group: "core",
 			memberName: "recenttracks",
-			description: 
-				"Displays the last 10 tracks scrobbled by a user.",
+			description: stripIndents`
+			Displays the last 10 tracks scrobbled by a user.
+			\`\`\`Example Usage: .rt <user>\`\`\`
+			`,
 		});
 	}
 

@@ -13,8 +13,10 @@ module.exports = class albumCommand extends BreezusCommand {
 			name: "album",
 			group: "info",
 			memberName: "album",
-			description: 
-				"Searches information for an album on last.fm.",
+			description: stripIndents`
+			Searches for album information on last.fm.
+			\`\`\`Example Usage: .album [query]\`\`\`
+			`,
 		});
 	}
 

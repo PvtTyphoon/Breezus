@@ -4,6 +4,7 @@ const rp = require("request-promise");
 const { colourGen } = require("../../util/Util");
 const { apiRoot, keys } = require("../../config.json");
 const { handleError } = require("../../errorHandling/errorHandling");
+const { stripIndents } = require("common-tags");
 
 module.exports = class geoArtistCommand extends BreezusCommand {
 	constructor(client) {
@@ -11,8 +12,10 @@ module.exports = class geoArtistCommand extends BreezusCommand {
 			name: "geoartists",
 			group: "info",
 			memberName: "geoartists",
-			description:
-				"Displays geoartists as provided by lastfm. If specifying a country ISO-3166-1 naming conventions apply - <https://en.m.wikipedia.org/wiki/ISO_3166-1>.",
+			description: stripIndents`
+			Displays geoartists as provided by lastfm. If specifying a country ISO-3166-1 naming conventions apply - <https://en.m.wikipedia.org/wiki/ISO_3166-1>.
+			\`\`\`Example Usage: .geoartists [query]\`\`\`
+			`,
 		});
 	}
 

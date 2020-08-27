@@ -4,6 +4,7 @@ const rp = require("request-promise");
 const { colourGen } = require("../../util/Util");
 const { apiRoot, keys } = require("../../config.json");
 const { notFound } = require("../../errorHandling/customErrors");
+const { stripIndents } = require("common-tags");
 
 module.exports = class albumCommand extends BreezusCommand {
 	constructor(client) {
@@ -11,8 +12,10 @@ module.exports = class albumCommand extends BreezusCommand {
 			name: "albumart",
 			group: "info",
 			memberName: "albumart",
-			description: 
-				"Album and album cover lookup.",
+			description: stripIndents`
+			Album and album cover lookup.
+			\`\`\`Example Usage: .albumart [query]\`\`\`
+			`,
 		});
 	}
 

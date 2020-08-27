@@ -12,8 +12,10 @@ module.exports = class linkCommand extends BreezusCommand {
 			aliases: ["lookup"],
 			group: "core",
 			memberName: "link",
-			description: 
-				"Searches for, and links to a last.fm profile.",
+			description: stripIndents`
+			Searches for, and links to a last.fm profile.
+			\`\`\`Example Usage: .link <user>\`\`\`
+			`,
 		});
 	}
 

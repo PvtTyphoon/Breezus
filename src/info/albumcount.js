@@ -12,8 +12,10 @@ module.exports = class albumCountCommand extends BreezusCommand {
 			aliases: ["ac", "albumcount"],
 			group: "info",
 			memberName: "albumcount",
-			description: 
-				"Displays the number of albums in a users library.",
+			description: stripIndents`
+			Displays the number of albums in a users library.
+			\`\`\`Example Usage: .albumcount <user>\`\`\`
+			`,
 		});
 	}
 

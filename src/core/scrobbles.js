@@ -13,8 +13,10 @@ module.exports = class scrobblesCommand extends BreezusCommand {
 			aliases: ["s"],
 			group: "core",
 			memberName: "scrobbles",
-			description:
-				"Displays the scrobble count for users between multiple time periods.",
+			description: stripIndents`
+			Displays the scrobble count for users between multiple time periods.
+			\`\`\`Example Usage: .s <user>\`\`\`
+			`,
 		});
 	}
 

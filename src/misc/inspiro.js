@@ -1,5 +1,6 @@
 const BreezusCommand = require("../../classes/command");
 const BreezusEmbed = require("../../classes/breezusEmbed");
+const { stripIndents } = require("common-tags");
 const rp = require("request-promise");
 
 module.exports = class inspiroCommand extends BreezusCommand {
@@ -9,8 +10,10 @@ module.exports = class inspiroCommand extends BreezusCommand {
 			aliases: ["i", "inspiro"],
 			group: "misc",
 			memberName: "inspiro",
-			description: 
-				"Generates an inspiro bot quote.",
+			description: stripIndents`
+			Generates a quote image from the inspirobot API.
+			\`\`\`Example Usage: .inspiro\`\`\`
+			`,
 		});
 	}
 

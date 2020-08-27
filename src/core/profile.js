@@ -6,6 +6,7 @@ const { getUser } = require("../../util/lastfmUserGetter");
 const { handleError } = require("../../errorHandling/errorHandling");
 const { notEnoughDataError } = require("../../errorHandling/customErrors");
 const { apiRoot, keys, imgurID } = require("../../config.json");
+const { stripIndents } = require("common-tags");
 
 var imgur = require("imgur");
 imgur.setClientId(imgurID);
@@ -18,8 +19,10 @@ module.exports = class profileCommand extends BreezusCommand {
 			aliases: ["p"],
 			group: "core",
 			memberName: "profile",
-			description: 
-				"Displays a user profile.",
+			description: stripIndents`
+			Displays a user profile.
+			\`\`\`Example Usage: .p <user>\`\`\`
+			`,
 		});
 	}
 

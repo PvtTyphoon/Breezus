@@ -17,8 +17,10 @@ module.exports = class createdAtCommand extends BreezusCommand {
 			aliases: ["ca", "age", "pa"],
 			group: "core",
 			memberName: "createdat",
-			description: 
-				"Displays a user profile's creation date.",
+			description: stripIndents`
+			Displays a user profile's creation date.
+			\`\`\`Example Usage: .ca <user>\`\`\`
+			`,
 		});
 	}
 

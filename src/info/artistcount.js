@@ -12,8 +12,10 @@ module.exports = class artistCountCommand extends BreezusCommand {
 			aliases: ["artc", "artistscount"],
 			group: "info",
 			memberName: "artistcount",
-			description: 
-				"Displays the number of artists in a users library.",
+			description: stripIndents`
+			Displays the number of artists in a users library.
+			\`\`\`Example Usage: .lib <user>\`\`\`
+			`,
 		});
 	}
 

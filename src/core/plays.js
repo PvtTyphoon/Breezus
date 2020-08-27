@@ -16,8 +16,10 @@ module.exports = class playsCommand extends BreezusCommand {
       aliases: ["play", "fav", "favs", "favourites"],
       group: "core",
       memberName: "plays",
-      description:
-        "Searches for an artist or album on last.fm and displays top played albums or tracks.",
+      description: stripIndents`
+      Searches for an artist or album on last.fm and displays top played albums or tracks.
+      \`\`\`Example Usage: .plays [artist|album] [query]\`\`\`
+      `,
     });
   }
 

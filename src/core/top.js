@@ -14,8 +14,10 @@ module.exports = class topCommand extends BreezusCommand {
 			aliases: ["top10"],
 			group: "core",
 			memberName: "top",
-			description: 
-				"Displays the top artists, albums, and tracks.",
+			description: stripIndents`
+			Displays the top artists, albums, and tracks.
+			\`\`\`Example Usage: .top <user>\`\`\`
+			`,
 		});
 	}
 

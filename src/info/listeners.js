@@ -42,8 +42,10 @@ module.exports = class listenersCommand extends BreezusCommand {
 			aliases: ["listener", "listens", "wk"],
 			group: "info",
 			memberName: "listeners",
-			description: 
-				"Leaderboard for artists, tracks, and albums.  Syntax: \`.listeners <album|track|aritst> <query>\`  Providing no query will default to your currently playing.",
+			description: stripIndents`
+			Leaderboard for artists, tracks, and albums.
+			\`\`\`Example Usage: .listeners [artist|track|album] [query]\`\`\`
+			`,
 		});
 	}
 

@@ -20,8 +20,10 @@ module.exports = class npCommand extends BreezusCommand {
 			aliases: ["nowplaying"],
 			group: "core",
 			memberName: "nowplaying",
-			description: 
-				"Displays the currently playing or last played track.",
+			description: stripIndents`
+			Displays the currently playing or last played track.
+			\`\`\`Example Usage: .np <user>\`\`\`
+			`,
 		});
 	}
 

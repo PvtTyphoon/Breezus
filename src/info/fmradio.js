@@ -12,8 +12,10 @@ module.exports = class npRadioCommand extends BreezusCommand {
 			aliases: ["radio", "npradio", "nps"],
 			group: "info",
 			memberName: "fmradio",
-			description:
-				"Displays all songs currently being played by Breezus users.",
+			description: stripIndents`
+			Displays all songs currently being played by Breezus users.
+			\`\`\`Example Usage: .radio\`\`\`
+			`,
 		});
 	}
 
