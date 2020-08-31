@@ -27,20 +27,18 @@ module.exports = class createdAtCommand extends BreezusCommand {
 	async run(message) {
 		message.channel.startTyping();
 		message.channel.stopTyping();
-		let userData = await getUser(message);
-		if (userData.error) return message.reply(userData.error);
-		var data;
 		try {
-			data = await this.fetchData(userData.user);
-			message.channel.send(stripIndents`
-			\`${data.username}\` created their account at \`${data.registered}\`
-			Which was ${data.time} ago.
-			Profile link: <${data.url}>
-			`);
+			var userData = await getUser(message);
+			var data = await this.fetchData(userData.user);
 		} catch (err) {
 			handleError(err, message);
 			return;
 		}
+		message.channel.send(stripIndents`
+			\`${data.username}\` created their account at \`${data.registered}\`
+			Which was ${data.time} ago.
+			Profile link: <${data.url}>
+			`);
 	}
 
 	async fetchData(user) {

@@ -20,6 +20,13 @@ class notFound extends customDataError {
   }
 }
 
+class registerError extends customDataError {
+  constructor(message) {
+    super(message); 
+    this.error = "User does not seem to have a linked account, you can search for a last.fm profile by specifying a username.  Contact the bot owner to have your account linked.";
+  }
+}
+
 module.exports = {
   notEnoughDataError: notEnoughDataError,
   notFound: notFound

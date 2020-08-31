@@ -2,8 +2,7 @@ const BreezusCommand = require("../../classes/command");
 const BreezusEmbed = require("../../classes/breezusEmbed");
 const rp = require("request-promise");
 const { stripIndents } = require("common-tags");
-const { apiRoot, keys, users } = require("../../config.json");
-const { handleError } = require("../../errorHandling/errorHandling");
+const { apiRoot, keys } = require("../../config.json");
 const { shorten } = require("../../util/TextMods");
 
 module.exports = class trackCommand extends BreezusCommand {
@@ -25,9 +24,8 @@ module.exports = class trackCommand extends BreezusCommand {
 		const args = message.content.trim().split(/ +/g).slice(1);
 		if (!args[0]) message.reply("No query provided.");
 		const query = args.join(" ");
-		var data;
 		try {
-			data = await this.fetchTrackData(query, message);
+			var data = await this.fetchTrackData(query, message);
 		} catch (err) {
 			message.channel.send(stripIndents`
 			Last.fm failed to provide a complete wiki for this track.
@@ -61,7 +59,7 @@ module.exports = class trackCommand extends BreezusCommand {
 			},
 		};
 		const validateTrack = await rp(validateOptions);
-		if (validateTrack.results.trackmatches.track.length == 0)
+		if (!validateTrack.results.trackmatches.track.length)
 			return message.channel.send(`No results found for ${query}`);
 		var options = {
 			uri: apiRoot,

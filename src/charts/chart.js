@@ -29,9 +29,6 @@ module.exports = class chartCommand extends BreezusCommand {
 		message.channel.startTyping();
 		message.channel.stopTyping();
 		const args = message.content.trim().split(/ +/g).slice(1);
-		let userData = await getUser(message);
-		if (userData.error) return message.reply(userData.error);
-		var data;
 		var chartSizeVar;
 		var chartTimeVar;
 		var dText;
@@ -131,6 +128,8 @@ module.exports = class chartCommand extends BreezusCommand {
 				dText = "`7 days (default)`";
 		}
 		try {
+			var userData = await getUser(message);
+			var data = await this.fetchData(userData.user);
 			var data = await this.fetchData(
 				userData.user,
 				chartSizeVar,

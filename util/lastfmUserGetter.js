@@ -20,6 +20,8 @@ const errors = JSON.parse(
 	),
 );
 
+const { registerError } = require("../errorHandling/customErrors");
+
 /*
  ** Ok now listen here, yes this is inefficient, yes theres better
  ** ways to do this, yes im retarded and this is bodged as shit. But
@@ -48,7 +50,7 @@ module.exports = {
 			if (unames[id]) userData.user = unames[id].username;
 			if (!unames[id]) userData.user = "";
 		}
-		if (userData.user.length === 0) userData.error = errors["register"];
+		if (!userData.user.length) throw new registerError("notFound");
 		return userData;
 	},
 };

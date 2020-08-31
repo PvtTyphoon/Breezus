@@ -33,10 +33,9 @@ module.exports = class playsCommand extends BreezusCommand {
         `${args[0]} is not a valid query type.  Use either album or artist.`
       );
     const query = args.slice(1).join(" ");
-    let userData = await getUser(message);
-    if (userData.error) return message.reply(userData.error);
-    var data;
     try {
+      var userData = await getUser(message);
+      var data;
       switch (args[0].toLowerCase()) {
         case "album":
           data = await this.fetchAlbumData(query, userData.user);
@@ -147,7 +146,7 @@ module.exports = class playsCommand extends BreezusCommand {
       },
     };
     const validateArtist = await rp(validateOptions);
-    if (validateArtist.results.artistmatches.artist.length == 0)
+    if (!validateArtist.results.artistmatches.artist.length)
       throw new notFound(query);
     var options = {
       uri: apiRoot,

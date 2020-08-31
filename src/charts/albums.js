@@ -24,12 +24,10 @@ module.exports = class albumChartCommand extends BreezusCommand {
 	async run(message) {
 		message.channel.startTyping();
 		message.channel.stopTyping();
-		let userData = await getUser(message);
-		if (userData.error) return message.reply(userData.error);
-		var data;
 		try {
-			data = await this.fetchData(userData.user);
-			if(data.labels.length !== 5) return message.channel.send(stripIndents`
+			var userData = await getUser(message);
+			var data = await this.fetchData(userData.user);
+			if (data.labels.length !== 5) return message.channel.send(stripIndents`
 			${userData.user} has not listened to enough music in the last 7 days to generate a chart.  \`Fetched ${data.count.length} out of 5 required albums.\`
 			`);
 			let image = await generatePieChart(data.count, data.labels);

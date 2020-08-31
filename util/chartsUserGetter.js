@@ -20,6 +20,8 @@ const errors = JSON.parse(
 	),
 );
 
+const { registerError } = require("../errorHandling/customErrors");
+
 // For commands that don't fetch users for mentions, yes this can be combined into one function, too lazy
 module.exports = {
 	getUser: async (message) => {
@@ -32,7 +34,7 @@ module.exports = {
 			if (unames[id]) userData.user = unames[id].username;
 			if (!unames[id]) userData.user = "";
 		}
-		if (userData.user.length === 0) userData.error = errors["register"];
+		if (!userData.user.length) throw new registerError("notFound");
 		return userData;
 	},
 };

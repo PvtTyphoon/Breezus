@@ -29,11 +29,9 @@ module.exports = class profileCommand extends BreezusCommand {
 	async run(message) {
 		message.channel.startTyping();
 		message.channel.stopTyping();
-		let userData = await getUser(message);
-		if (userData.error) return message.reply(userData.error);
-		var data;
 		try {
-			data = await this.fetchData(userData.user);
+			var userData = await getUser(message);
+			var data = await this.fetchData(userData.user);
 			var topAlbums = [];
 			var topArtists = [];
 			var topTracks = [];
@@ -164,7 +162,7 @@ module.exports = class profileCommand extends BreezusCommand {
 		};
 		const trackData = await rp(trackOptions);
 
-		if(trackData.toptracks.track.length < 5 || albumData.topalbums.album.length < 25 || artistData.topartists.artist.length < 5) throw new notEnoughDataError(user);
+		if (trackData.toptracks.track.length < 5 || albumData.topalbums.album.length < 25 || artistData.topartists.artist.length < 5) throw new notEnoughDataError(user);
 
 		const data = {
 			username: user,

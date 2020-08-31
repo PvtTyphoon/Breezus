@@ -30,11 +30,9 @@ module.exports = class npCommand extends BreezusCommand {
 	async run(message) {
 		message.channel.startTyping();
 		message.channel.stopTyping();
-		let userData = await getUser(message);
-		if (userData.error) return message.reply(userData.error);
-		var data;
 		try {
-			data = await this.fetchData(userData.user);
+			var userData = await getUser(message);
+			var data = await this.fetchData(userData.user);
 		} catch (err) {
 			handleError(err, message);
 			return;
@@ -90,7 +88,7 @@ module.exports = class npCommand extends BreezusCommand {
 
 		const rData = await rp(options);
 
-		if(!lastTrack.recenttracks.track.length) throw new notEnoughDataError(user);
+		if (!lastTrack.recenttracks.track.length) throw new notEnoughDataError(user);
 
 		const data = {
 			artist: lastTrack.recenttracks.track[0].artist["#text"],

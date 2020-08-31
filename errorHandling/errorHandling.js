@@ -16,7 +16,7 @@ const errors = JSON.parse(
 
 module.exports = {
 	handleError: async (err, message) => {
-		if(err.type == "customError") {
+		if (err.type == "customError") {
 			message.channel.send(err.error);
 			return;
 		}

@@ -1,4 +1,4 @@
-const BreezusCommand = require("../../classes/throttledCommand");
+const BreezusCommand = require("../../classes/command");
 const Discord = require("discord.js");
 const rp = require("request-promise");
 const unixtime = require("unixtime");

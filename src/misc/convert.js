@@ -23,7 +23,7 @@ module.exports = class convertCommand extends BreezusCommand {
 		message.channel.startTyping();
 		message.channel.stopTyping();
 		let args = message.content.trim().split(/ +/g).slice(1);
-		if (args.length === 0)
+		if (!args.length)
 			return message.reply(stripIndents`
 		No arguments provided.
 		Syntax \`.convert <unit> <unit> <value>\`

@@ -24,11 +24,10 @@ module.exports = class lastScrobbleCommand extends BreezusCommand {
 	async run(message) {
 		message.channel.startTyping();
 		message.channel.stopTyping();
-		let userData = await getUser(message);
-		if (userData.error) return message.reply(userData.error);
-		var data;
 		try {
-			data = await this.fetchData(userData.user);
+			var userData = await getUser(message);
+			if (userData.error) return message.reply(userData.error);
+			var data = await this.fetchData(userData.user);
 		} catch (err) {
 			handleError(err, message);
 			return;
@@ -53,7 +52,7 @@ module.exports = class lastScrobbleCommand extends BreezusCommand {
 		};
 		const rData = await rp(options);
 
-		if(!rData.recenttracks.track.length) throw new notEnoughDataError(user);
+		if (!rData.recenttracks.track.length) throw new notEnoughDataError(user);
 
 		const data = {
 			purl: `https://www.last.fm/user/${rData.recenttracks["@attr"].user}`,

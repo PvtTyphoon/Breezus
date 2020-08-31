@@ -26,9 +26,8 @@ module.exports = class albumCommand extends BreezusCommand {
 		const args = message.content.trim().split(/ +/g).slice(1);
 		if (!args[0]) message.reply("No query provided.");
 		const query = args.join(" ");
-		var data;
 		try {
-			data = await this.fetchAlbumData(query, message);
+			var data = await this.fetchAlbumData(query, message);
 		} catch (err) {
 			handleError(err, message);
 			return;
@@ -58,7 +57,7 @@ module.exports = class albumCommand extends BreezusCommand {
 			},
 		};
 		const validateAlbum = await rp(validateOptions);
-		if (validateAlbum.results.albummatches.album.length == 0)
+		if (!validateAlbum.results.albummatches.album.length)
 			return message.channel.send(`No results found for ${query}`);
 		var options = {
 			uri: apiRoot,

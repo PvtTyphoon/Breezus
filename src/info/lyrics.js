@@ -33,7 +33,7 @@ module.exports = class lyricsCommand extends BreezusCommand {
 
 	async fetchLyrics(message) {
 		const args = message.content.trim().split(/ +/g).slice(1);
-		if (args.length === 0) return message.reply(`No search query provided.`);
+		if (!args.length) return message.reply("No search query provided.");
 		let songname = args.join(" ");
 		process.on("uncaughtException", function (err) {
 			message.channel.send(err.message);

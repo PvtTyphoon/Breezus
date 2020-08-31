@@ -23,14 +23,13 @@ module.exports = class geoTrackCommand extends BreezusCommand {
 		message.channel.startTyping();
 		message.channel.stopTyping();
 		let args = message.content.trim().split(/ +/g).slice(1);
-		if (args.length === 0)
+		if (!args.length)
 			return message.reply(
 				`Please provide a search query. Use the help command for more information.`,
 			);
 		const country = args.join(" ");
-		var data;
 		try {
-			data = await this.fetchData(country);
+			var data = await this.fetchData(country);
 		} catch (err) {
 			handleError(err, message);
 			return;

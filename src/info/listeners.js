@@ -58,8 +58,10 @@ module.exports = class listenersCommand extends BreezusCommand {
 	    Missing parameters.
 	    Tip: Use the \`.help listeners\` command for help`);
 		if (!modes.includes(args[0].toLowerCase()))
-			return message.reply(`${args[0]} is not a valid query type.
-	    Use the \`.help listeners\` command for more info.`);
+			return message.reply(stripIndents`
+			${args[0]} is not a valid query type.
+			Use the \`.help listeners\` command for more info.
+			`);
 		const query = args.slice(1).join(" ");
 		var data;
 		try {
@@ -108,7 +110,7 @@ module.exports = class listenersCommand extends BreezusCommand {
 			},
 		};
 		const validateTrack = await rp(validateOptions);
-		if (validateTrack.results.trackmatches.track.length == 0) throw new notFound(query);
+		if (!validateTrack.results.trackmatches.track.length) throw new notFound(query);
 		var lbData = [];
 		var options = {
 			uri: apiRoot,
@@ -164,7 +166,7 @@ module.exports = class listenersCommand extends BreezusCommand {
 			},
 		};
 		const validateAlbum = await rp(validateOptions);
-		if (validateAlbum.results.albummatches.album.length == 0) throw new notFound(query);
+		if (!validateAlbum.results.albummatches.album.length) throw new notFound(query);
 		var lbData = [];
 		var options = {
 			uri: apiRoot,
@@ -220,7 +222,7 @@ module.exports = class listenersCommand extends BreezusCommand {
 			},
 		};
 		const validateArtist = await rp(validateOptions);
-		if (validateArtist.results.artistmatches.artist.length == 0) throw new notFound(query);
+		if (!validateArtist.results.artistmatches.artist.length) throw new notFound(query);
 		var lbData = [];
 		var options = {
 			uri: apiRoot,

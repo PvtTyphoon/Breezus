@@ -25,14 +25,13 @@ module.exports = class weatherCommand extends BreezusCommand {
 		// Could export this as a function or make it look neater, but eh, it'll do
 		weather.find({ search: location, degreeType: `C` }, function (err, result) {
 			if (err) message.channel.send(err);
-			if (result === undefined || result.length === 0) {
+			if (result === undefined || !result.length) {
 				message.channel.send(stripIndents`
 			Could not fetch results.
 			`);
 				return;
 			}
 			const current = result[0].current;
-			const location = result[0].location;
 			const embed = new BreezusEmbed(message)
 				.setDescription(`${current.skytext}`)
 				.setAuthor(`Forecast: ${current.observationpoint}`)

@@ -1,11 +1,10 @@
 const BreezusCommand = require("../../classes/command");
 const BreezusEmbed = require("../../classes/breezusEmbed");
 const rp = require("request-promise");
-const { colourGen } = require("../../util/Util");
 const { apiRoot, keys } = require("../../config.json");
 const { notFound } = require("../../errorHandling/customErrors");
 const { stripIndents } = require("common-tags");
-
+const { handleError } = require("../../errorHandling/errorHandling");
 module.exports = class albumCommand extends BreezusCommand {
 	constructor(client) {
 		super(client, {
@@ -22,9 +21,8 @@ module.exports = class albumCommand extends BreezusCommand {
 	async run(message) {
 		message.channel.startTyping();
 		message.channel.stopTyping();
-		var data;
 		try {
-			data = await this.fetchData(message);
+			var data = await this.fetchData(message);
 		} catch (err) {
 			handleError(err, message);
 			return;
@@ -47,9 +45,10 @@ module.exports = class albumCommand extends BreezusCommand {
 				album: args.join(" "),
 				api_key: keys[0],
 				format: "json",
+				limit: "1",
 			},
 		};
-
+		if (!rData.results.albummatches.album.length) throw new notFound(args);
 		const rData = await rp(options);
 		const data = {
 			cover: rData.results.albummatches.album[0].image[rData.results.albummatches.album[0].image.length -1]["#text"],

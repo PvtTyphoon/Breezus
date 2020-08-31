@@ -25,10 +25,7 @@ module.exports = class statsCommand extends BreezusCommand {
 	async run(message) {
 		message.channel.startTyping();
 		message.channel.stopTyping();
-		let userData = await getUser(message);
-		if (userData.error) return message.reply(userData.error);
 		const args = message.content.trim().split(/ +/g).slice(1);
-		var data;
 		var period;
 		var unixTime;
 		var dText;
@@ -89,7 +86,8 @@ module.exports = class statsCommand extends BreezusCommand {
 				unixTime = now - 604800;
 		}
 		try {
-			data = await this.fetchData(userData.user, period, unixTime);
+			var userData = await getUser(message);
+			var data = await this.fetchData(userData.user, period, unixTime);
 		} catch (err) {
 			handleError(err, message);
 			return;
@@ -122,7 +120,7 @@ module.exports = class statsCommand extends BreezusCommand {
 				)} artists per day.
 				${data.username} averaged ${Math.round(
 					data.scrobbles / days,
-				)} scroblles per day.
+				)} scrobbles per day.
 				`,
 				false,
 			);

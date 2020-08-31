@@ -26,9 +26,8 @@ module.exports = class artistCommand extends BreezusCommand {
 		const args = message.content.trim().split(/ +/g).slice(1);
 		if (!args[0]) message.reply("No query provided.");
 		const query = args.join(" ");
-		var data;
 		try {
-			data = await this.fetchArtistData(query, message);
+			var data = await this.fetchArtistData(query, message);
 		} catch (err) {
 			handleError(err, message);
 			return;
@@ -65,7 +64,7 @@ module.exports = class artistCommand extends BreezusCommand {
 			},
 		};
 		const validateArtist = await rp(validateOptions);
-		if (validateArtist.results.artistmatches.artist.length == 0)
+		if (!validateArtist.results.artistmatches.artist.length)
 			return message.channel.send(`No results found for ${query}`);
 		var options = {
 			uri: apiRoot,

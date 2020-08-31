@@ -1,7 +1,7 @@
 const BreezusCommand = require("../../classes/command");
 const rp = require("request-promise");
 const { stripIndents } = require("common-tags");
-const { apiRoot, keys, users } = require("../../config.json");
+const { apiRoot, keys } = require("../../config.json");
 const { handleError } = require("../../errorHandling/errorHandling");
 const { notFound } = require("../../errorHandling/customErrors");
 
