@@ -48,8 +48,8 @@ module.exports = class albumCommand extends BreezusCommand {
 				limit: "1",
 			},
 		};
-		if (!rData.results.albummatches.album.length) throw new notFound(args);
 		const rData = await rp(options);
+		if (!rData.results.albummatches.album.length) throw new notFound(args);
 		const data = {
 			cover: rData.results.albummatches.album[0].image[rData.results.albummatches.album[0].image.length -1]["#text"],
 			link: rData.results.albummatches.album[0].url,
