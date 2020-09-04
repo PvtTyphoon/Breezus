@@ -28,6 +28,7 @@ class registerError extends customDataError {
 }
 
 module.exports = {
-  notEnoughDataError: notEnoughDataError,
-  notFound: notFound
+  notEnoughDataError,
+  notFound,
+  registerError
 }
