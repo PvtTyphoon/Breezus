@@ -48,6 +48,7 @@
 		"moment": "2.24.0",
 		"solenolyrics": "5.0.0",
 		"sqlite": "3.0.3",
-		"systeminformation": "4.27.3"
+		"systeminformation": "4.27.3",
+		"urban-dictionary": "2.2.1"
 	}
 }
