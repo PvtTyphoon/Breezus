@@ -55,6 +55,7 @@ On merit of these terms Breezus can be used to fetch and embed within Discord th
 ```
 
 Breezus also uses emojis that belong to registered Discord users.  
+
 These emojis are either logos that are obtained and used under fair use and in accordance with the APIs they represent.  All other emojis have been created by us, or are available under creative commons.
 
 This copyright notice only permits the usage of the assets obtained from the audioscrobbler API within the context of this bot's operations and any other uses void the license granted by Last.fm and the respective copyright owners.
