@@ -2,7 +2,7 @@ const BreezusCommand = require("../../classes/command");
 const BreezusEmbed = require("../../classes/breezusEmbed");
 const rp = require("request-promise");
 const { stripIndents } = require("common-tags");
-const { apiRoot, keys, users } = require("../../config.json");
+const { apiRoot, keys } = require("../../config.json");
 const { handleError } = require("../../errorHandling/errorHandling");
 const { notFound } = require("../../errorHandling/customErrors");
 const { getUser } = require("../../util/chartsUserGetter");
@@ -126,7 +126,7 @@ module.exports = class playsCommand extends BreezusCommand {
         validateAlbum.results.albummatches.album[0].name
       } by ${validateAlbum.results.albummatches.album[0].artist}.
       ${user} has ${rData.album.userplaycount} plays, which account for ${
-        (rData.album.userplaycount / rData.album.playcount) * 100
+        ((rData.album.userplaycount / rData.album.playcount) * 100).toFixed(5)
       }% of global plays (${rData.album.playcount} plays)
       `,
       url: validateAlbum.results.albummatches.album[0].url,

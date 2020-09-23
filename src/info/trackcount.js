@@ -30,7 +30,7 @@ module.exports = class trackCountCommand extends BreezusCommand {
 			return;
 		}
 		message.channel.send(stripIndents`
-		${data.user} has ${data.count} tracks scrobbled since ${data.joined}
+		\`${data.user}\` has **${data.count} tracks** scrobbled since __${data.joined}__
 		`);
 	}
 	async fetchData(user) {

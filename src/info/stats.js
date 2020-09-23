@@ -5,7 +5,7 @@ const unixtime = require("unixtime");
 const { stripIndents } = require("common-tags");
 const { getUser } = require("../../util/chartsUserGetter");
 const { handleError } = require("../../errorHandling/errorHandling");
-const { apiRoot, keys, imgurID } = require("../../config.json");
+const { apiRoot, keys } = require("../../config.json");
 const now = unixtime();
 
 module.exports = class statsCommand extends BreezusCommand {
@@ -97,7 +97,6 @@ module.exports = class statsCommand extends BreezusCommand {
 			.setDescription(
 				stripIndents`
             [View profile for ${data.username}](${data.url})
-                Statistics for ${dText}
                 `,
 			)
 			.addField(

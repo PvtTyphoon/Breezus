@@ -1,9 +1,7 @@
 const BreezusCommand = require("../../classes/command");
 const BreezusEmbed = require("../../classes/breezusEmbed");
-const Discord = require("discord.js");
 const rp = require("request-promise");
 const unixtime = require("unixtime");
-const { handleError } = require("../../errorHandling/errorHandling");
 const { apiRoot, keys, users } = require("../../config.json");
 const now = unixtime();
 const { stripIndents } = require("common-tags");
@@ -54,7 +52,6 @@ module.exports = class leaderboardListCommand extends BreezusCommand {
 		message.channel.stopTyping();
 		const args = message.content.trim().split(/ +/g).slice(1);
 		var period;
-		var dText;
 		switch (args[0]) {
 			case "day":
 			case "24hr":
@@ -111,7 +108,11 @@ module.exports = class leaderboardListCommand extends BreezusCommand {
 		for (let i = 0; i < data.scrobbleLabel.length; i++) {
 			lb.push(`${medals[i]}${data.scrobbleLabel[i]}`);
 		}
-		const embed = new BreezusEmbed(message).setDescription(lb.join("\n"));
+		const embed = new BreezusEmbed(message).setDescription(stripIndents`
+		__**Leaderboard for Breezus**__
+		
+		lb.join("\n")
+		`);
 		message.channel.send({ embed });
 	}
 

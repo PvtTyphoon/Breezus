@@ -10,15 +10,6 @@ const unames = JSON.parse(
 		},
 	),
 );
-const errors = JSON.parse(
-	fs.readFileSync(
-		path.resolve(__dirname, "..", "assets", "json", "errors.json"),
-		"utf8",
-		function (err) {
-			if (err) console.log("error", err);
-		},
-	),
-);
 
 const { registerError } = require("../errorHandling/customErrors");
 

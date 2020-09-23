@@ -82,20 +82,26 @@ module.exports = class profileCommand extends BreezusCommand {
 				.uploadBase64(stream)
 				.then(function (json) {
 					const embed = new BreezusEmbed(message)
-						.setDescription(
-							`[View profile for ${data.username}](${data.url})\nCountry : ${
+						.setDescription(stripIndents`
+							[View profile for ${data.username}](${data.url})
+							Country : ${
 								data.country
-							}\nReal Name : ${
+							}
+							Real Name : ${
 								data.name
-							}\nJoined ${data.registered.toUTCString()}`,
-						)
+							}
+							Joined ${data.registered.toUTCString()}
+						`)
 						.addField(`❯ Top 5 Tracks`, topTracks.join("\n"), false)
 						.addField(`❯ Top 5 Albums`, topAlbums.join("\n"), false)
 						.addField(`❯ Top 5 Artists`, topArtists.join("\n"), false)
 						.addField(
-							`Library`,
-							`Tracks: ${data.trackCount}\nAlbums: ${data.albumCount}\nArtists: ${data.artistCount}`,
-							false,
+							`❯ Library`,
+							stripIndents`
+							> Tracks: ${data.trackCount}
+							> Albums: ${data.albumCount}
+							> Artists: ${data.artistCount}`,
+							true,
 						)
 						.setThumbnail(data.avatar.replace(/jpg|jpeg|png/gi, "gif"))
 						.setImage(json.data.link);

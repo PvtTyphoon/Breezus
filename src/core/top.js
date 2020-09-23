@@ -64,7 +64,7 @@ module.exports = class topCommand extends BreezusCommand {
 			[Link to last.fm page](https://www.last.fm/user/${data.username}/library/tracks)
 			${topTracks.join("\n")}
 			`,
-				false,
+				true,
 			)
 			.addField(
 				`❯ Top 10 Albums`,
@@ -72,7 +72,7 @@ module.exports = class topCommand extends BreezusCommand {
 			[Link to last.fm page](https://www.last.fm/user/${data.username}/library/albums)
 			${topAlbums.join("\n")}
 			`,
-				false,
+			true,
 			)
 			.addField(
 				`❯ Top 10 Artists`,
@@ -82,16 +82,16 @@ module.exports = class topCommand extends BreezusCommand {
 			}/library/artists)
 			${topArtists.join("\n")}
 			`,
-				false,
+			true,
 			)
 			.addField(
-				`Library`,
+				`❯ Library`,
 				stripIndents`
-				Tracks: ${data.trackCount}
-				Albums: ${data.albumCount}
-				Artists: ${data.artistCount}
+				> Tracks: ${data.trackCount}
+				> Albums: ${data.albumCount}
+				> Artists: ${data.artistCount}
 				`,
-				false,
+				true,
 			);
 		message.channel.send({ embed });
 	}

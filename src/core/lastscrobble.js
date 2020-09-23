@@ -33,7 +33,7 @@ module.exports = class lastScrobbleCommand extends BreezusCommand {
 			return;
 		}
 		message.channel.send(stripIndents`
-		${data.description}
+		> ${data.description}
 		Profile link: ${data.purl}
 		`);
 	}

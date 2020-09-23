@@ -30,7 +30,7 @@ module.exports = class albumCountCommand extends BreezusCommand {
 			return;
 		}
 		message.channel.send(stripIndents`
-		${data.user} has ${data.count} albums scrobbled since ${data.joined}
+		\`${data.user}\` has **${data.count} albums** scrobbled since __${data.joined}__
 		`);
 	}
 	async fetchData(user) {
@@ -61,7 +61,7 @@ module.exports = class albumCountCommand extends BreezusCommand {
 
 		const data = {
 			user,
-			joined: new Date(rData.user.registered["#text"] * 1000),
+			joined: (new Date(rData.user.registered["#text"] * 1000).toString()).slice(0, 24),
 			count: albumData.topalbums["@attr"].total,
 		};
 		return data;

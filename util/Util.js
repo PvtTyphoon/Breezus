@@ -40,6 +40,11 @@ module.exports = class Util {
 			"#90EE90",
 			"#b19cd9",
 			"#ff6961",
+			"#FFDFD3",
+			"#C1E7E3",
+			"#9d0bfa",
+			"#8AFA82",
+			"#f13961",
 		];
 		return colours[Math.floor(Math.random() * colours.length * 1)];
 	}

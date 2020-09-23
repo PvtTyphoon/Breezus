@@ -41,17 +41,15 @@ module.exports = class lfmCommand extends BreezusCommand {
 			.addField(
 				"❯ Track",
 				stripIndents`[${data.trackName}](${data.trackURL})
-			(on ${data.album})`,
+				by **${data.artist}** | on **${data.album}**`,
 				false,
 			)
-			.addField("❯ Artist", data.artist, false)
 			.addField(
 				"❯ Last track",
 				stripIndents`[${data.lastTrackName}](${data.lastTrackURL})
-				(on ${data.lastAlbum})`,
+				by **${data.lastArtist}** | on **${data.lastAlbum}**`,
 				false,
 			)
-			.addField("❯ Last artist", data.lastArtist, false)
 			.setFooter(`Scrobbled ${data.scrobbles} tracks.`);
 		message.channel.send({ embed });
 	}

@@ -31,7 +31,7 @@ module.exports = class averageCommand extends BreezusCommand {
 			return;
 		}
 		message.channel.send(stripIndents`
-		Scrobble averages for ${userData.user}
+		>>> Scrobble averages for ${userData.user}
 		\`\`\`
 		Last 24 hours: ${data[0]} scrobbles per day.
 		Last 7 days: ${data[1]} scrobbles per day.

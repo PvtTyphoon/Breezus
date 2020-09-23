@@ -31,7 +31,7 @@ module.exports = class scrobblesCommand extends BreezusCommand {
 			return;
 		}
 		message.channel.send(stripIndents`
-		Scrobbles for ${userData.user}
+		>>> Scrobbles for ${userData.user}
 		\`\`\`
 		Last 24 hours: ${data[0]}
 		Last 7 days: ${data[1]}

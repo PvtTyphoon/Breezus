@@ -52,10 +52,10 @@ module.exports = class searchCommand extends BreezusCommand {
 			return;
 		}
 		message.channel.send(stripIndents`
-		${data.description}
+		>>> __${data.description}__
 		Top result on last.fm:
 		${data.link}
-		
+		 
 		${data.information}
 		`);
 	}

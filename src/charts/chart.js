@@ -37,6 +37,7 @@ module.exports = class chartCommand extends BreezusCommand {
 			case "3×3":
 			case "3":
 				chartSizeVar = 3;
+				break;
 			case "4x4":
 			case "4×4":
 			case "4":
@@ -145,10 +146,10 @@ module.exports = class chartCommand extends BreezusCommand {
 				displayingText: `Displaying ${data.albums.length} albums in a ${chartSizeVar}×${chartSizeVar} grid for ${dText}`,
 			};
 			if (chartParams.count !== data.albums.length) {
-				message.reply(stripIndents`
-				User has not listened to enough music in ${chartTimeVar} to generate a ${chartSizeVar}×${chartSizeVar} grid of their albums.
-				Fetched ${data.albums.length} out of ${chartParams.count} required albums.
-				Try generating a smaller chart or use a longer time period.
+				message.channel.send(stripIndents`
+				> ${userData.user} has not listened to enough music in ${chartTimeVar} to generate a ${chartSizeVar}×${chartSizeVar} grid of their albums.
+				> Fetched ${data.albums.length} out of ${chartParams.count} required albums.
+				> Try generating a smaller chart or use a longer time period.
 			`);
 				return;
 			}
@@ -157,8 +158,6 @@ module.exports = class chartCommand extends BreezusCommand {
 			const ctx = canvas.getContext("2d");
 			let xOff = 0;
 			let yOff = 0;
-			ctx.fillStyle = "black";
-			ctx.fillRect(0, 0, chartParams.height, chartParams.width);
 			for (let i = 0; i < chartParams.count; i++) {
 				const album_ = chartParams.albums[i];
 				if (album_.image[album_.image.length - 1]["#text"] !== "") {
@@ -168,11 +167,11 @@ module.exports = class chartCommand extends BreezusCommand {
 					ctx.drawImage(albumArt, xOff, yOff);
 				} else {
 					const albumArt = await loadImage(
-						"https://i-really-should.go-get-a.life/DcfTOP.jpeg",
+						"https://never-gonna.go-get-a.life/ZLW2We.jpeg",
 					);
 					ctx.drawImage(albumArt, xOff, yOff);
 				}
-				ctx.fillStyle = "rgba(0, 0, 0, 0.6)";
+				ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
 				ctx.fillRect(xOff, yOff, xOff + 300, yOff + 300);
 				ctx.fillStyle = "white";
 				ctx.font = `20px Noto`;
@@ -190,15 +189,15 @@ module.exports = class chartCommand extends BreezusCommand {
 				.uploadBase64(stream)
 				.then(function (json) {
 					const embed = new BreezusEmbed(message)
-						.setDescription(
-							stripIndents`Chart for ${chartParams.user}
-						${chartParams.displayingText}`,
-						)
+						.setDescription(stripIndents`
+						Chart for ${chartParams.user}
+						${chartParams.displayingText}
+						`)
 						.setImage(json.data.link);
 					message.channel.send({ embed });
 				})
 				.catch(function (err) {
-					message.reply(`The Imgur API returned an error ${err.message}`);
+					message.reply(`The Imgur API returned an error: ${err.message}`);
 				});
 		} catch (err) {
 			handleError(err, message);

@@ -130,7 +130,7 @@ module.exports = class listenersCommand extends BreezusCommand {
 			rData = await rp(options);
 			if (rData.track.userplaycount > 0) {
 				lbData.push({
-					dTag: `[${users[i]}](https://www.last.fm/user/${users[i]}) : ${rData.track.userplaycount} plays`,
+					dTag: `[${users[i]}](https://www.last.fm/user/${users[i]}): ${rData.track.userplaycount} plays`,
 					sort: rData.track.userplaycount,
 				});
 			}

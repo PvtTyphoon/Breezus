@@ -10,15 +10,6 @@ const unames = JSON.parse(
 		},
 	),
 );
-const errors = JSON.parse(
-	fs.readFileSync(
-		path.resolve(__dirname, "..", "assets", "json", "errors.json"),
-		"utf8",
-		function (err) {
-			if (err) console.log("error", err);
-		},
-	),
-);
 
 const { registerError } = require("../errorHandling/customErrors");
 
@@ -27,7 +18,11 @@ module.exports = {
 	getUser: async (message) => {
 		var userData = {};
 		const args = message.content.trim().split("|").slice(1);
-		if (args.length > 0) {
+		if (message.mentions.members.first()) {
+			const { id } = message.mentions.members.first().user;
+			if (unames[id]) userData.user = unames[id].username;
+			if (!unames[id]) userData.user = "";
+		} else if (args.length > 0) {
 			userData.user = args[0].replace(/ +/g, "");
 		} else {
 			const { id } = message.author;

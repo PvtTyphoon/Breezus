@@ -36,7 +36,7 @@ module.exports = class createdAtCommand extends BreezusCommand {
 		}
 		message.channel.send(stripIndents`
 			\`${data.username}\` created their account at \`${data.registered}\`
-			Which was ${data.time} ago.
+			Which was __**${data.time}**__ ago.
 			Profile link: <${data.url}>
 			`);
 	}
@@ -53,12 +53,11 @@ module.exports = class createdAtCommand extends BreezusCommand {
 			},
 		};
 		const rData = await rp(options);
+		let ts = new Date(rData.user.registered["#text"] * 1000).toString();
 		const data = {
 			username: user,
-			registered: new Date(rData.user.registered["#text"] * 1000),
-			time: prettyMilliseconds(
-				Math.abs(Date.now() - new Date(rData.user.registered["#text"] * 1000)),
-			),
+			registered: ts.slice(0, ts.length - 38),
+			time: prettyMilliseconds(Math.abs(Date.now() - new Date(rData.user.registered["#text"] * 1000))),
 			url: rData.user.url,
 		};
 		return data;

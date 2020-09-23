@@ -39,19 +39,20 @@ module.exports = class npCommand extends BreezusCommand {
 		}
 		const embed = new BreezusEmbed(message)
 			.setDescription(data.description)
+			.addField("❯ Track", stripIndents`
+			[${data.trackName}](${data.trackURL})
+			by **${data.artist}** | on **${data.album}**
+			`, false)
 			.setThumbnail(data.cover)
-			.addField("❯ Track", `${data.trackName}\n(on ${data.album})`, false)
-			.addField("❯ Artist", data.artist, false)
-			.addField("❯ Track Runtime", data.runtime, false)
 			.addField(
-				"❯ User specific info",
+				"❯ Info",
 				stripIndents`
+				Runtime: ${data.runtime}
 				${userData.user} scrobbled this track ${data.playcount} times
 				${data.liked}
 				`,
 				false,
 			)
-			.addField("❯ Track Page", `[Track Page.](${data.trackURL})`, false)
 			.setFooter(`Scrobbled ${data.scrobbles} tracks.`);
 		message.channel.send({ embed });
 	}

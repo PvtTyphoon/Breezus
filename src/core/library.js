@@ -3,7 +3,7 @@ const BreezusEmbed = require("../../classes/breezusEmbed");
 const rp = require("request-promise");
 const { getUser } = require("../../util/lastfmUserGetter");
 const { handleError } = require("../../errorHandling/errorHandling");
-const { apiRoot, keys, imgurID } = require("../../config.json");
+const { apiRoot, keys } = require("../../config.json");
 const { stripIndents } = require("common-tags");
 
 module.exports = class libraryCommand extends BreezusCommand {
