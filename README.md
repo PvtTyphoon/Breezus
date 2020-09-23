@@ -3,7 +3,7 @@
 <p align="center">
 <img alt="breezus" src="https://never-gonna.go-get-a.life/CrFhcT.png" />
   
-![](https://img.shields.io/badge/Breezus-3.1-658eff?style=for-the-badge)
+![](https://img.shields.io/badge/Breezus-3.4-658eff?style=for-the-badge)
 ![](https://img.shields.io/aur/license/android-studio?color=00ffcc&style=for-the-badge)
 ![](https://img.shields.io/npm/v/npm?style=for-the-badge)
 ![](https://img.shields.io/npm/v/discord.js-commando?color=f10041&label=discord.js-commando&style=for-the-badge)
