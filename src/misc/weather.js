@@ -2,6 +2,7 @@ const BreezusCommand = require("../../classes/command");
 const BreezusEmbed = require("../../classes/breezusEmbed");
 const { stripIndents } = require("common-tags");
 const weather = require("weather-js");
+const { colourGen } = require("../../util/Util");
 
 module.exports = class weatherCommand extends BreezusCommand {
 	constructor(client) {
@@ -12,7 +13,7 @@ module.exports = class weatherCommand extends BreezusCommand {
 			memberName: "weather",
 			description: stripIndents`
 			MSN weather service lookup.
-			\`\`\`Example Usage: .w [location]\`\`\`
+			> Example Usage: .w [location]
 			`,
 		});
 	}
@@ -21,7 +22,7 @@ module.exports = class weatherCommand extends BreezusCommand {
 		message.channel.startTyping();
 		message.channel.stopTyping();
 		const args = message.content.trim().split(/ +/g).slice(1);
-		let location = args.slice(0).join(` `);
+		let location = args.slice(0).join(" ");
 		// Could export this as a function or make it look neater, but eh, it'll do
 		weather.find({ search: location, degreeType: `C` }, function (err, result) {
 			if (err) message.channel.send(err);

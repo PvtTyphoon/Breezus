@@ -15,7 +15,7 @@ module.exports = class libraryCommand extends BreezusCommand {
 			memberName: "library",
 			description: stripIndents`
 			Displays library statistics for a user.
-			\`\`\`Example Usage: .lib <user>\`\`\`
+			> Example Usage: .lib <user>
 			`,
 		});
 	}
@@ -33,9 +33,8 @@ module.exports = class libraryCommand extends BreezusCommand {
 
 		const embed = new BreezusEmbed(message)
 			.setDescription(
-				`[View profile for ${data.username}](${
-					data.url
-				})\nJoined ${data.registered.toUTCString()}`,
+				stripIndents`[View profile for ${data.username}](${data.url})
+				Joined ${data.registered.toUTCString()}`,
 			)
 			.addField(`❯ Total Tracks`, data.trackCount, false)
 			.addField(`❯ Total Albums`, data.albumCount, false)
@@ -100,7 +99,7 @@ module.exports = class libraryCommand extends BreezusCommand {
 			username: user,
 			scrobbles: rData.user.playcount,
 			registered: new Date(rData.user.registered["#text"] * 1000),
-			avatar: rData.user.image[rData.user.image.length -1]["#text"],
+			avatar: rData.user.image[rData.user.image.length - 1]["#text"],
 			url: rData.user.url,
 			trackCount: trackData.toptracks["@attr"].total,
 			artistCount: artistData.topartists["@attr"].total,

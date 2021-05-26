@@ -1,16 +1,13 @@
-const Discord = require("discord.js");
 const { CommandoClient } = require("discord.js-commando");
 const { stripIndents } = require("common-tags");
 const activities = require("./assets/json/activity");
 const { logID, clients, ownerID } = require("./config.json");
-const fs = require("fs");
 const path = require("path");
 
 const client = new CommandoClient({
 	commandPrefix: clients[0].prefix,
 	owner: ownerID,
 	disableEveryone: true,
-	unknownCommandResponse: false,
 });
 
 client.registry
@@ -22,7 +19,9 @@ client.registry
 		["misc", "Miscellaneous commands"],
 	])
 	.registerDefaultGroups()
-	.registerDefaultCommands()
+	.registerDefaultCommands({
+		unknownCommand: false,
+	})
 	.registerCommandsIn(path.join(__dirname, "src"));
 
 client.on("ready", () => {
@@ -30,35 +29,36 @@ client.on("ready", () => {
 		const activity = activities[Math.floor(Math.random() * activities.length)];
 		client.user.setActivity(activity.text, { type: activity.type });
 	}, 60000);
-	client.channels.get(logID).send(stripIndents`
-	[START] Guild Count: ${client.guilds.size}
-	Users: ${client.guilds.map((g) => g.memberCount).reduce((a, b) => a + b)}
+	client.channels.cache.get(logID).send(stripIndents`
+	[START] Guild Count: ${client.guilds.cache.size}
+	Users: ${client.guilds.cache.map((g) => g.memberCount).reduce((a, b) => a + b)}
 	`);
 });
 
 client.on("disconnect", (event) => {
-	client.channels.get(logID).send(stripIndents`
+	client.channels.cache.get(logID).send(stripIndents`
 	[DISCONNECT] Disconnected with code ${event.code}.
 	`);
 	process.exit(0);
 });
 
 client.on("error", (err) =>
-	client.channels.get(logID).send(stripIndents`
+	client.channels.cache.get(logID).send(stripIndents`
 [ERROR] Disconnected with code ${err}.
 `),
 );
 
 client.on("guildCreate", (guild) =>
-	client.channels.get(logID).send(stripIndents` 
+	client.channels.cache.get(logID).send(stripIndents` 
 [GUILD UPDATE] [JOIN]: ${guild.name}
 `),
 );
 
 client.on("guildDelete", (guild) =>
-	client.channels.get(logID).send(stripIndents`
+	client.channels.cache.get(logID).send(stripIndents`
 [GUILD UPDATE] [REMOVAL]: ${guild.name}
 `),
 );
 
 client.login(process.env.BOT_TOKEN);
+process.on("unhandledRejection", console.error);

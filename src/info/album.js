@@ -15,7 +15,7 @@ module.exports = class albumCommand extends BreezusCommand {
 			memberName: "album",
 			description: stripIndents`
 			Searches for album information on last.fm.
-			\`\`\`Example Usage: .album [query]\`\`\`
+			> Example Usage: .album [query]
 			`,
 		});
 	}
@@ -95,3 +95,5 @@ module.exports = class albumCommand extends BreezusCommand {
 		return data;
 	}
 };
+
+

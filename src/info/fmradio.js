@@ -4,6 +4,7 @@ const rp = require("request-promise");
 const { stripIndents } = require("common-tags");
 const { apiRoot, keys, users } = require("../../config.json");
 const { handleError } = require("../../errorHandling/errorHandling");
+const { scrobble } = require("../../scrobbling/scrobble.js");
 
 module.exports = class npRadioCommand extends BreezusCommand {
 	constructor(client) {
@@ -14,7 +15,7 @@ module.exports = class npRadioCommand extends BreezusCommand {
 			memberName: "fmradio",
 			description: stripIndents`
 			Displays all songs currently being played by Breezus users.
-			\`\`\`Example Usage: .radio\`\`\`
+			> Example Usage: .radio
 			`,
 		});
 	}
@@ -65,6 +66,11 @@ module.exports = class npRadioCommand extends BreezusCommand {
 					> By \`${lastTrack.recenttracks.track[0].artist["#text"]}\`
 					`,
 				});
+				scrobble(
+					lastTrack.recenttracks.track[0].name,
+					lastTrack.recenttracks.track[0].album["#text"],
+					lastTrack.recenttracks.track[0].artist["#text"],
+				);
 			}
 		}
 		return lbData;

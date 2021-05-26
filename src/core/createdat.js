@@ -19,7 +19,7 @@ module.exports = class createdAtCommand extends BreezusCommand {
 			memberName: "createdat",
 			description: stripIndents`
 			Displays a user profile's creation date.
-			\`\`\`Example Usage: .ca <user>\`\`\`
+			> Example Usage: .ca <user>
 			`,
 		});
 	}
@@ -57,7 +57,9 @@ module.exports = class createdAtCommand extends BreezusCommand {
 		const data = {
 			username: user,
 			registered: ts.slice(0, ts.length - 38),
-			time: prettyMilliseconds(Math.abs(Date.now() - new Date(rData.user.registered["#text"] * 1000))),
+			time: prettyMilliseconds(
+				Math.abs(Date.now() - new Date(rData.user.registered["#text"] * 1000)),
+			),
 			url: rData.user.url,
 		};
 		return data;

@@ -1,6 +1,8 @@
 const { SUCCESS_EMOJI_ID } = process.env;
 const yes = ["yes", "y", "ye", "yeah", "yup", "yea", "ya"];
 const no = ["no", "n", "nah", "nope", "nop"];
+const unixtime = require("unixtime");
+const now = unixtime();
 
 module.exports = class Util {
 	static delay(ms) {
@@ -123,5 +125,171 @@ module.exports = class Util {
 		if (yes.includes(choice)) return true;
 		if (no.includes(choice)) return false;
 		return false;
+	}
+	static parseTimePeriod(inputTime) {
+		var timeVar;
+		var dText;
+		var period;
+		switch (inputTime) {
+			case "7day":
+			case "7days":
+			case "7d":
+			case "week":
+			case "7":
+				timeVar = "7day";
+				dText = "`7 days`";
+				period = now - 604800;
+				break;
+
+			case "month":
+			case "30day":
+			case "30days":
+			case "30d":
+			case "30":
+				timeVar = "1month";
+				dText = "`30 days`";
+				period = now - 2592000;
+				break;
+
+			case "3month":
+			case "3months":
+			case "3m":
+			case "90d":
+			case "90":
+				timeVar = "3month";
+				dText = "`3 months`";
+				period = now - 7884000;
+				break;
+
+			case "6month":
+			case "6months":
+			case "6m":
+			case "halfyear":
+			case "180d":
+			case "180":
+				timeVar = "6month";
+				dText = "`6 months`";
+				period = now - 15768000;
+				break;
+
+			case "year":
+			case "12month":
+			case "12months":
+			case "12m":
+			case "1year":
+			case "1y":
+			case "365d":
+			case "365":
+				timeVar = "12month";
+				dText = "`1 year`";
+				period = now - 31536000;
+				break;
+
+			case "overall":
+			case "alltime":
+			case "total":
+			case "all":
+				timeVar = "overall";
+				dText = "`overall`";
+				period = 1009843200;
+				break;
+
+			default:
+				timeVar = "7day";
+				dText = "`7 days (default)`";
+				period = now - 604800;
+		}
+		return {
+			timeVar,
+			dText,
+			period,
+		};
+	}
+	static parseChartSize(input) {
+		var chartSizeVar;
+		switch (input) {
+			case "3x3":
+			case "3×3":
+			case "3":
+			case "three":
+				chartSizeVar = 3;
+				break;
+
+			case "4x4":
+			case "4×4":
+			case "4":
+			case "four":
+				chartSizeVar = 4;
+				break;
+
+			case "5x5":
+			case "5×5":
+			case "5":
+			case "five":
+				chartSizeVar = 5;
+				break;
+
+			case "6x6":
+			case "6×6":
+			case "6":
+			case "six":
+				chartSizeVar = 6;
+				break;
+
+			case "7x7":
+			case "7×7":
+			case "7":
+			case "seven":
+				chartSizeVar = 7;
+				break;
+
+			case "8x8":
+			case "8×8":
+			case "8":
+			case "eight":
+				chartSizeVar = 8;
+				break;
+
+			case "9x9":
+			case "9×9":
+			case "9":
+			case "nine":
+				chartSizeVar = 9;
+				break;
+
+			default:
+				chartSizeVar = 5;
+		}
+		return chartSizeVar;
+	}
+	static generateMedals() {
+		var medals;
+		return (medals = {
+			0: "🥇  ",
+			1: "🥈  ",
+			2: "🥉  ",
+			3: " 4.    ",
+			4: " 5.    ",
+			5: " 6.    ",
+			6: " 7.    ",
+			7: " 8.    ",
+			8: " 9.    ",
+			9: " 10.  ",
+			10: " 11.  ",
+			11: " 12.  ",
+			12: " 13.  ",
+			13: " 14.  ",
+			14: " 15.  ",
+			15: " 16.  ",
+			16: " 17.  ",
+			17: " 18.  ",
+			18: " 19.  ",
+			19: " 20.  ",
+			20: " 21.  ",
+			21: " 22.  ",
+			22: " 23.  ",
+			23: " 24.  ",
+			24: " 25.  ",
+		});
 	}
 };

@@ -16,7 +16,7 @@ module.exports = class playcountCommand extends BreezusCommand {
 			memberName: "playcount",
 			description: stripIndents`
 			Playcount for artists, tracks, and albums.
-			\`\`\`Example Usage: .pc [artist|track|album] [query] | <user>\`\`\`
+			> Example Usage: .pc [artist|track|album] [query] | <user>
 			`,
 		});
 	}

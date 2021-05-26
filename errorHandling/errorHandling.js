@@ -1,5 +1,5 @@
 const { stripIndents } = require("common-tags");
-const { logID, apiRoot } = require("../config.json");
+const { logID } = require("../config.json");
 const { genDebugToken } = require("../util/Util");
 const fs = require("fs");
 const path = require("path");
@@ -28,17 +28,19 @@ module.exports = {
 			return;
 		}
 		var debugToken = genDebugToken(16);
-		const embed = new ErrorEmbed(message).setTitle(`Token: \`${debugToken}\``)
-			.setDescription(stripIndents`
-			Error
-			\`\`\`
-			${err}
-			\`\`\`
-			`);
-		message.client.channels.get(logID).send({ embed });
+		const embed = new ErrorEmbed(message)
+			.setTitle(`Token: ${debugToken}`)
+			.addField(
+				"Error:",
+				stripIndents`
+			>>> ${err.message}
+			`,
+				false,
+			);
+		message.client.channels.cache.get(logID).send({ embed });
 		message.channel.send(stripIndents`
 			${errors["generic"]}
-			Debug Token: \`${debugToken}\`
+			Debug Token: ${debugToken}
 			`);
 	},
 };

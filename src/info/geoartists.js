@@ -14,7 +14,7 @@ module.exports = class geoArtistCommand extends BreezusCommand {
 			memberName: "geoartists",
 			description: stripIndents`
 			Displays geoartists as provided by lastfm. If specifying a country ISO-3166-1 naming conventions apply - <https://en.m.wikipedia.org/wiki/ISO_3166-1>.
-			\`\`\`Example Usage: .geoartists [query]\`\`\`
+			>Example Usage: .geoartists [query]
 			`,
 		});
 	}

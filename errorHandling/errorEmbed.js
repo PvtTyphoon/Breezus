@@ -1,26 +1,17 @@
-const { RichEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 const { colourGen } = require("../util/Util");
 const { stripIndents } = require("common-tags");
 
-module.exports = class ErrorEmbed extends RichEmbed {
+module.exports = class ErrorEmbed extends MessageEmbed {
 	constructor(message) {
 		super(message);
 		this.setColor(colourGen());
-		this.addField("Command Author", message.author.tag, false);
-		this.addField("Command", message.content, false);
-		this.addField(
-			"Message",
-			stripIndents`
-		Link: 
-		> [Link.](${message.message.url})
-		Channel: 
-		> ${message.channel.name}
-		\`${message.channel.id}\`
-		Server: 
-		> ${message.guild.name}
-		\`${message.guild.id}\`
-		`,
-			false,
-		);
+		this.setDescription(stripIndents`
+		An error occured while running a command, 
+		Command run by ${message.author.tag}
+		Error info:
+		>>> Command: **${message.content}**
+		[Link](${message.url}) in #${message.channel.name}, in ${message.guild.name}.
+		`);
 	}
 };

@@ -16,7 +16,7 @@ module.exports = class artistChartCommand extends BreezusCommand {
 			memberName: "artists",
 			description: stripIndents`
 			Generates a pie chart of the top 5 artists from the last 7 days.
-			\`\`\`Example Usage: .artists <user>\`\`\`
+			> Example Usage: .artists <user>
 			`,
 		});
 	}
@@ -27,13 +27,14 @@ module.exports = class artistChartCommand extends BreezusCommand {
 		try {
 			var userData = await getUser(message);
 			var data = await this.fetchData(userData.user);
-			if (data.labels.length !== 5) return message.channel.send(stripIndents`
-			${userData.user} has not listened to enough music in the last 7 days to generate a chart.  \`Fetched ${data.count.length} out of required artists.\`
+			if (data.labels.length !== 5)
+				return message.channel.send(stripIndents`
+			${userData.user} has not listened to enough music in the last 7 days to generate a chart. Fetched ${data.count.length} out of required artists.
 			`);
 			let image = await generatePieChart(data.count, data.labels);
-			const attachment = new Discord.Attachment(image);
+			const attachment = new Discord.MessageAttachment(image);
 			message.channel.send(
-				`Top 5 artists for ${userData.user} over the last 7 days`,
+				`Top 5 artists for ${userData.user} over the last 7 days.`,
 				attachment,
 			);
 		} catch (err) {

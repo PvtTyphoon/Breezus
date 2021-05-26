@@ -4,6 +4,7 @@ const rp = require("request-promise");
 const { stripIndents } = require("common-tags");
 const { getUser } = require("../../util/chartsUserGetter");
 const { handleError } = require("../../errorHandling/errorHandling");
+const { parseTimePeriod, parseChartSize } = require("../../util/Util");
 const { apiRoot, keys, imgurID } = require("../../config.json");
 const { createCanvas, loadImage, registerFont } = require("canvas");
 
@@ -20,7 +21,7 @@ module.exports = class chartCommand extends BreezusCommand {
 			memberName: "chart",
 			description: stripIndents`
 			Generates a chart with the top albums of a user. 
-			\`\`\`Example Usage: .chart <3x3|4x4|5x5|6x6|7x7|8x8|9x9> <7day|30day|3month|6month|12month|overall> | <use>\`\`\`
+			> Example Usage: .chart <3x3|4x4|5x5|6x6|7x7|8x8|9x9> <7day|30day|3month|6month|12month|overall> | <user>
 			`,
 		});
 	}
@@ -29,113 +30,12 @@ module.exports = class chartCommand extends BreezusCommand {
 		message.channel.startTyping();
 		message.channel.stopTyping();
 		const args = message.content.trim().split(/ +/g).slice(1);
-		var chartSizeVar;
-		var chartTimeVar;
-		var dText;
-		switch (args[0]) {
-			case "3x3":
-			case "3×3":
-			case "3":
-				chartSizeVar = 3;
-				break;
-			case "4x4":
-			case "4×4":
-			case "4":
-				chartSizeVar = 4;
-				break;
-
-			case "5x5":
-			case "5×5":
-			case "5":
-				chartSizeVar = 5;
-				break;
-
-			case "6x6":
-			case "6×6":
-			case "6":
-				chartSizeVar = 6;
-				break;
-
-			case "7x7":
-			case "7×7":
-			case "7":
-				chartSizeVar = 7;
-				break;
-
-			case "8x8":
-			case "8×8":
-			case "8":
-				chartSizeVar = 8;
-				break;
-
-			case "9x9":
-			case "9×9":
-			case "9":
-				chartSizeVar = 9;
-				break;
-
-			default:
-				chartSizeVar = 5;
-		}
-		switch (args[1]) {
-			case "7day":
-			case "7days":
-			case "7d":
-				chartTimeVar = "7day";
-				dText = "`7 days`";
-				break;
-
-			case "month":
-			case "30day":
-			case "30days":
-			case "30d":
-				chartTimeVar = "1month";
-				dText = "`30 days`";
-				break;
-
-			case "3month":
-			case "3months":
-			case "3m":
-				chartTimeVar = "3month";
-				dText = "`3 months`";
-				break;
-
-			case "6month":
-			case "6months":
-			case "6m":
-				chartTimeVar = "6month";
-				dText = "`6 months`";
-				break;
-
-			case "year":
-			case "12month":
-			case "12months":
-			case "12m":
-			case "1y":
-				chartTimeVar = "12month";
-				dText = "`1 year`";
-				break;
-
-			case "overall":
-			case "alltime":
-			case "total":
-			case "all":
-				chartTimeVar = "overall";
-				dText = "`overall`";
-				break;
-
-			default:
-				chartTimeVar = "7day";
-				dText = "`7 days (default)`";
-		}
+		var chartSizeVar = parseChartSize(args[0]);
+		var { timeVar, dText } = parseTimePeriod(args[1]);
 		try {
 			var userData = await getUser(message);
 			var data = await this.fetchData(userData.user);
-			var data = await this.fetchData(
-				userData.user,
-				chartSizeVar,
-				chartTimeVar,
-			);
+			var data = await this.fetchData(userData.user, chartSizeVar, timeVar);
 
 			var chartParams = {
 				user: userData.user,
@@ -147,7 +47,7 @@ module.exports = class chartCommand extends BreezusCommand {
 			};
 			if (chartParams.count !== data.albums.length) {
 				message.channel.send(stripIndents`
-				> ${userData.user} has not listened to enough music in ${chartTimeVar} to generate a ${chartSizeVar}×${chartSizeVar} grid of their albums.
+				> ${userData.user} has not listened to enough music in ${timeVar} to generate a ${chartSizeVar}×${chartSizeVar} grid of their albums.
 				> Fetched ${data.albums.length} out of ${chartParams.count} required albums.
 				> Try generating a smaller chart or use a longer time period.
 			`);
@@ -189,10 +89,12 @@ module.exports = class chartCommand extends BreezusCommand {
 				.uploadBase64(stream)
 				.then(function (json) {
 					const embed = new BreezusEmbed(message)
-						.setDescription(stripIndents`
+						.setDescription(
+							stripIndents`
 						Chart for ${chartParams.user}
 						${chartParams.displayingText}
-						`)
+						`,
+						)
 						.setImage(json.data.link);
 					message.channel.send({ embed });
 				})
@@ -205,7 +107,7 @@ module.exports = class chartCommand extends BreezusCommand {
 		}
 	}
 
-	async fetchData(user, chartSizeVar, chartTimeVar) {
+	async fetchData(user, chartSizeVar, timeVar) {
 		var albumOptions = {
 			uri: apiRoot,
 			json: true,
@@ -215,7 +117,7 @@ module.exports = class chartCommand extends BreezusCommand {
 				api_key: keys[1],
 				format: "json",
 				limit: chartSizeVar * chartSizeVar,
-				period: chartTimeVar,
+				period: timeVar,
 			},
 		};
 		const albumData = await rp(albumOptions);

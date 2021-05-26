@@ -5,6 +5,8 @@ const { apiRoot, keys } = require("../../config.json");
 const { notFound } = require("../../errorHandling/customErrors");
 const { stripIndents } = require("common-tags");
 const { handleError } = require("../../errorHandling/errorHandling");
+const { paginationEmbed } = require("../../util/pagination");
+
 module.exports = class albumCommand extends BreezusCommand {
 	constructor(client) {
 		super(client, {
@@ -13,7 +15,7 @@ module.exports = class albumCommand extends BreezusCommand {
 			memberName: "albumart",
 			description: stripIndents`
 			Album and album cover lookup.
-			\`\`\`Example Usage: .albumart [query]\`\`\`
+			> Example Usage: .albumart [query]
 			`,
 		});
 	}
@@ -28,11 +30,16 @@ module.exports = class albumCommand extends BreezusCommand {
 			return;
 		}
 		// Lol fuck you lastfm imma bodge this shit
-		const embed = new BreezusEmbed(message)
-			.setImage(data.cover.replace("300x300", "4096x4096"))
-			.addField("❯ Album", data.name, true)
-			.addField("❯ Artist", data.artist, true);
-		message.channel.send(`URL: ${data.link}`, { embed });
+		var pages = [];
+		for (let i = 0; i < data.length; i++) {
+			const embed = new BreezusEmbed(message)
+				.setDescription(`URL: [Click Me.](${data[i].link})`)
+				.setImage(data[i].cover.replace("300x300", "4096x4096"))
+				.addField("❯ Album", data[i].name, true)
+				.addField("❯ Artist", data[i].artist, true);
+			pages.push(embed);
+		}
+		paginationEmbed(message, pages);
 	}
 
 	async fetchData(message) {
@@ -45,17 +52,23 @@ module.exports = class albumCommand extends BreezusCommand {
 				album: args.join(" "),
 				api_key: keys[0],
 				format: "json",
-				limit: "1",
+				limit: "50",
 			},
 		};
 		const rData = await rp(options);
+		var data = [];
 		if (!rData.results.albummatches.album.length) throw new notFound(args);
-		const data = {
-			cover: rData.results.albummatches.album[0].image[rData.results.albummatches.album[0].image.length -1]["#text"],
-			link: rData.results.albummatches.album[0].url,
-			name: rData.results.albummatches.album[0].name,
-			artist: rData.results.albummatches.album[0].artist,
-		};
+		for (let i = 0; i < rData.results.albummatches.album.length; i++) {
+			data.push({
+				cover:
+					rData.results.albummatches.album[i].image[
+						rData.results.albummatches.album[i].image.length - 1
+					]["#text"],
+				link: rData.results.albummatches.album[i].url,
+				name: rData.results.albummatches.album[i].name,
+				artist: rData.results.albummatches.album[i].artist,
+			});
+		}
 		return data;
 	}
 };

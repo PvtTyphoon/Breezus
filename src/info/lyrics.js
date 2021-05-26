@@ -15,7 +15,7 @@ module.exports = class lyricsCommand extends BreezusCommand {
 			memberName: "lyrics",
 			description: stripIndents`
 			Fetches the lyrics for a song.
-			\`\`\`Example Usage: .lyrics [song name]\`\`\`
+			> Example Usage: .lyrics [song name]
 			`,
 		});
 	}

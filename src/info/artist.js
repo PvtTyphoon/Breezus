@@ -15,7 +15,7 @@ module.exports = class artistCommand extends BreezusCommand {
 			memberName: "artist",
 			description: stripIndents`
 			Searches for artist information on last.fm.
-			\`\`\`.artist [query]\`\`\`
+			> .artist [query]
 			`,
 		});
 	}
@@ -65,7 +65,7 @@ module.exports = class artistCommand extends BreezusCommand {
 		};
 		const validateArtist = await rp(validateOptions);
 		if (!validateArtist.results.artistmatches.artist.length)
-			return message.channel.send(`No results found for ${query}`);
+			return message.channel.send(`No results found for ${query}.`);
 		var options = {
 			uri: apiRoot,
 			json: true,

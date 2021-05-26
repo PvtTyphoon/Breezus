@@ -14,7 +14,7 @@ module.exports = class geoTrackCommand extends BreezusCommand {
 			memberName: "geotracks",
 			description: stripIndents`
 			Displays geotracks as provided by lastfm. If specifying a country ISO-3166-1 naming conventions apply - <https://en.m.wikipedia.org/wiki/ISO_3166-1>.
-			\`\`\`Example Usage: .geotracks [query]\`\`\`
+			> Example Usage: .geotracks [query]
 			`,
 		});
 	}

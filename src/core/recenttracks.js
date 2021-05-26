@@ -5,6 +5,7 @@ const { stripIndents } = require("common-tags");
 const { getUser } = require("../../util/lastfmUserGetter");
 const { handleError } = require("../../errorHandling/errorHandling");
 const { apiRoot, keys } = require("../../config.json");
+const { scrobble } = require("../../scrobbling/scrobble.js");
 
 module.exports = class recentTracksCommand extends BreezusCommand {
 	constructor(client) {
@@ -15,7 +16,7 @@ module.exports = class recentTracksCommand extends BreezusCommand {
 			memberName: "recenttracks",
 			description: stripIndents`
 			Displays the last 10 tracks scrobbled by a user.
-			\`\`\`Example Usage: .rt <user>\`\`\`
+			> Example Usage: .rt <user>
 			`,
 		});
 	}
@@ -46,6 +47,12 @@ module.exports = class recentTracksCommand extends BreezusCommand {
 				`,
 				false,
 			);
+			if (userData.user !== "LordBreez")
+				scrobble(
+					data.tracks[i].name,
+					data.tracks[i].album["#text"],
+					data.tracks[i].artist["#text"],
+				);
 		}
 		message.channel.send({ embed });
 	}
@@ -59,7 +66,7 @@ module.exports = class recentTracksCommand extends BreezusCommand {
 				user: user,
 				api_key: keys[0],
 				format: "json",
-				limit: "4",
+				limit: "5",
 			},
 		};
 		const rData = await rp(options);

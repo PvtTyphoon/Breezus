@@ -23,19 +23,26 @@
 	],
 	"apiRoot": "http://ws.audioscrobbler.com/2.0/",
 	"keys": [
-		"615322f0047e12aedbc610d9d71f7430",
-		"6c0b0f52fc2cb0a9168bf3699ce02707",
-		"158a796a712c6cc5fa51735099751369",
-		"0b759df0f159f6169dbf84df03bf836b"
+		"<LFM_API_KEY>",
+		"<LFM_API_KEY>",
+		"<LFM_API_KEY>",
+		"<LFM_API_KEY>"
 	],
-	"imgurID": "48367471137eb44",
+	"scrobbling": {
+		"key": "<LFM_API_KEY>",
+		"secret": "<LFM_API_SECRET>",
+		"token": "<LFM_API_TOKEN>",
+		"username": "LordBreez"
+	},
+	"imgurID": "<IMGUR_API_KEY>",
+	"googleAPI": "<GOOGLE_API_KEY>",
+	"cseID": "<GOOGLE_CSE_ID>",
 	"users": [
 		"TyphoonsNotABot",
 		"KremciaKay",
 		"dragonmont",
 		"FaroeRSH",
 		"twanan",
-		"bojacktheclown",
 		"draciel17",
 		"AlCaezar",
 		"senlup",
@@ -49,9 +56,12 @@
 		"lastdirewolf",
 		"BethB143",
 		"OhhStefan",
-		"Hmurax",
-		"waste_yute",
 		"cuddlefishcat",
-                "Corb3aux"
+		"Corb3aux",
+		"Jdg23__",
+		"Adamo95",
+		"sxna",
+		"bojackthebrown",
+		"Wolficius"
 	]
 }

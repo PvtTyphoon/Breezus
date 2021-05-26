@@ -12,7 +12,7 @@ module.exports = class inspiroCommand extends BreezusCommand {
 			memberName: "inspiro",
 			description: stripIndents`
 			Generates a quote image from the inspirobot API.
-			\`\`\`Example Usage: .inspiro\`\`\`
+			> Example Usage: .inspiro
 			`,
 		});
 	}

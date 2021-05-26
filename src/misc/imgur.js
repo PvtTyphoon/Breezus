@@ -10,12 +10,11 @@ module.exports = class imgCommand extends BreezusCommand {
 	constructor(client) {
 		super(client, {
 			name: "imgur",
-			aliases: ["img"],
 			group: "misc",
 			memberName: "imgur",
 			description: stripIndents`
 			Uploads the first attachment of a message to Imgur and returns a link.  Images mapped by their snowflake IDs.
-			\`\`\`Example Usage: .imgur (Image attached to message)\`\`\`
+			> Example Usage: .imgur (Image attached to message)
 			`,
 		});
 	}

@@ -14,7 +14,7 @@ module.exports = class albumCountCommand extends BreezusCommand {
 			memberName: "albumcount",
 			description: stripIndents`
 			Displays the number of albums in a users library.
-			\`\`\`Example Usage: .albumcount <user>\`\`\`
+			> Example Usage: .albumcount <user>
 			`,
 		});
 	}
@@ -61,7 +61,9 @@ module.exports = class albumCountCommand extends BreezusCommand {
 
 		const data = {
 			user,
-			joined: (new Date(rData.user.registered["#text"] * 1000).toString()).slice(0, 24),
+			joined: new Date(rData.user.registered["#text"] * 1000)
+				.toString()
+				.slice(0, 24),
 			count: albumData.topalbums["@attr"].total,
 		};
 		return data;

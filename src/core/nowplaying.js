@@ -7,10 +7,11 @@ const { handleError } = require("../../errorHandling/errorHandling");
 const { notEnoughDataError } = require("../../errorHandling/customErrors");
 const { msToTS } = require("../../util/Util");
 const { apiRoot, keys } = require("../../config.json");
+const { scrobble } = require("../../scrobbling/scrobble.js");
 
 const op = {
-	"1": "User has loved this track. <:loved:655068079146926110>",
-	"0": "User has not loved this track.",
+	1: "User has loved this track. <:loved:655068079146926110>",
+	0: "User has not loved this track.",
 };
 
 module.exports = class npCommand extends BreezusCommand {
@@ -22,7 +23,7 @@ module.exports = class npCommand extends BreezusCommand {
 			memberName: "nowplaying",
 			description: stripIndents`
 			Displays the currently playing or last played track.
-			\`\`\`Example Usage: .np <user>\`\`\`
+			> Example Usage: .np <user>
 			`,
 		});
 	}
@@ -39,10 +40,14 @@ module.exports = class npCommand extends BreezusCommand {
 		}
 		const embed = new BreezusEmbed(message)
 			.setDescription(data.description)
-			.addField("❯ Track", stripIndents`
+			.addField(
+				"❯ Track",
+				stripIndents`
 			[${data.trackName}](${data.trackURL})
 			by **${data.artist}** | on **${data.album}**
-			`, false)
+			`,
+				false,
+			)
 			.setThumbnail(data.cover)
 			.addField(
 				"❯ Info",
@@ -55,6 +60,8 @@ module.exports = class npCommand extends BreezusCommand {
 			)
 			.setFooter(`Scrobbled ${data.scrobbles} tracks.`);
 		message.channel.send({ embed });
+		if (userData.user !== "LordBreez")
+			scrobble(data.trackName, data.album, data.artist);
 	}
 
 	async fetchData(user) {
@@ -89,7 +96,8 @@ module.exports = class npCommand extends BreezusCommand {
 
 		const rData = await rp(options);
 
-		if (!lastTrack.recenttracks.track.length) throw new notEnoughDataError(user);
+		if (!lastTrack.recenttracks.track.length)
+			throw new notEnoughDataError(user);
 
 		const data = {
 			artist: lastTrack.recenttracks.track[0].artist["#text"],
@@ -97,7 +105,10 @@ module.exports = class npCommand extends BreezusCommand {
 			trackName: lastTrack.recenttracks.track[0].name,
 			trackURL: lastTrack.recenttracks.track[0].url,
 			playcount: rData.track.userplaycount,
-			cover: lastTrack.recenttracks.track[0].image[lastTrack.recenttracks.track[0].image.length -1]["#text"],
+			cover:
+				lastTrack.recenttracks.track[0].image[
+					lastTrack.recenttracks.track[0].image.length - 1
+				]["#text"],
 			liked: op[rData.track.userloved],
 			runtime: msToTS(rData.track.duration),
 			scrobbles: lastTrack.recenttracks["@attr"].total,

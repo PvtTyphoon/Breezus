@@ -15,7 +15,7 @@ module.exports = class scrobblesCommand extends BreezusCommand {
 			memberName: "scrobbles",
 			description: stripIndents`
 			Displays the scrobble count for users between multiple time periods.
-			\`\`\`Example Usage: .s <user>\`\`\`
+			> Example Usage: .s <user>
 			`,
 		});
 	}

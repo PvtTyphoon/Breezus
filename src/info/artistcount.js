@@ -14,7 +14,7 @@ module.exports = class artistCountCommand extends BreezusCommand {
 			memberName: "artistcount",
 			description: stripIndents`
 			Displays the number of artists in a users library.
-			\`\`\`Example Usage: .lib <user>\`\`\`
+			> Example Usage: .lib <user>
 			`,
 		});
 	}
@@ -61,7 +61,9 @@ module.exports = class artistCountCommand extends BreezusCommand {
 
 		const data = {
 			user,
-			joined: (new Date(rData.user.registered["#text"] * 1000).toString()).slice(0, 24),
+			joined: new Date(rData.user.registered["#text"] * 1000)
+				.toString()
+				.slice(0, 24),
 			count: artistData.topartists["@attr"].total,
 		};
 		return data;

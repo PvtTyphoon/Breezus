@@ -16,7 +16,7 @@ module.exports = class lastScrobbleCommand extends BreezusCommand {
 			memberName: "lastscrobble",
 			description: stripIndents`
 			Displays the time a user last scrobbled.
-			\`\`\`Example Usage: .la <user>\`\`\`
+			> Example Usage: .la <user>
 			`,
 		});
 	}
@@ -59,7 +59,7 @@ module.exports = class lastScrobbleCommand extends BreezusCommand {
 			description: !rData.recenttracks.track[0]["@attr"]
 				? stripIndents`Currently not listening. Last scrobbled at ${
 						rData.recenttracks.track[0].date["#text"]
-		};
+				  };
 				Or \`${prettyMilliseconds(
 					Date.now() - rData.recenttracks.track[0].date.uts * 1000,
 				)}\` ago.

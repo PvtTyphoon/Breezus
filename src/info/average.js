@@ -15,7 +15,7 @@ module.exports = class averageCommand extends BreezusCommand {
 			memberName: "average",
 			description: stripIndents`
 			Displays the average scrobble count for users between multiple time periods.
-			\`\`\`Example Usage: .averages <user>\`\`\`
+			> Example Usage: .averages <user>
 			`,
 		});
 	}

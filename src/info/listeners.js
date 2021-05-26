@@ -5,35 +5,9 @@ const { stripIndents } = require("common-tags");
 const { apiRoot, keys, users } = require("../../config.json");
 const { handleError } = require("../../errorHandling/errorHandling");
 const { notFound } = require("../../errorHandling/customErrors");
-
 const modes = ["album", "artist", "track"];
-let medals = {
-	"0": "🥇  ",
-	"1": "🥈  ",
-	"2": "🥉  ",
-	"3": " 4.    ",
-	"4": " 5.    ",
-	"5": " 6.    ",
-	"6": " 7.    ",
-	"7": " 8.    ",
-	"8": " 9.    ",
-	"9": " 10.  ",
-	"10": " 11.  ",
-	"11": " 12.  ",
-	"12": " 13.  ",
-	"13": " 14.  ",
-	"14": " 15.  ",
-	"15": " 16.  ",
-	"16": " 17.  ",
-	"17": " 18.  ",
-	"18": " 19.  ",
-	"19": " 20.  ",
-	"20": " 21.  ",
-	"21": " 22.  ",
-	"22": " 23.  ",
-	"23": " 24.  ",
-	"24": " 25.  ",
-};
+const { generateMedals } = require("../../util/Util");
+const medals = generateMedals();
 
 module.exports = class listenersCommand extends BreezusCommand {
 	constructor(client) {
@@ -44,7 +18,7 @@ module.exports = class listenersCommand extends BreezusCommand {
 			memberName: "listeners",
 			description: stripIndents`
 			Leaderboard for artists, tracks, and albums.
-			\`\`\`Example Usage: .listeners [artist|track|album] [query]\`\`\`
+			> Example Usage: .listeners [artist|track|album] [query]
 			`,
 		});
 	}
@@ -110,7 +84,8 @@ module.exports = class listenersCommand extends BreezusCommand {
 			},
 		};
 		const validateTrack = await rp(validateOptions);
-		if (!validateTrack.results.trackmatches.track.length) throw new notFound(query);
+		if (!validateTrack.results.trackmatches.track.length)
+			throw new notFound(query);
 		var lbData = [];
 		var options = {
 			uri: apiRoot,
@@ -166,7 +141,8 @@ module.exports = class listenersCommand extends BreezusCommand {
 			},
 		};
 		const validateAlbum = await rp(validateOptions);
-		if (!validateAlbum.results.albummatches.album.length) throw new notFound(query);
+		if (!validateAlbum.results.albummatches.album.length)
+			throw new notFound(query);
 		var lbData = [];
 		var options = {
 			uri: apiRoot,
@@ -222,7 +198,8 @@ module.exports = class listenersCommand extends BreezusCommand {
 			},
 		};
 		const validateArtist = await rp(validateOptions);
-		if (!validateArtist.results.artistmatches.artist.length) throw new notFound(query);
+		if (!validateArtist.results.artistmatches.artist.length)
+			throw new notFound(query);
 		var lbData = [];
 		var options = {
 			uri: apiRoot,

@@ -5,6 +5,7 @@ const { stripIndents } = require("common-tags");
 const { getUser } = require("../../util/lastfmUserGetter");
 const { handleError } = require("../../errorHandling/errorHandling");
 const { apiRoot, keys } = require("../../config.json");
+const { scrobble } = require("../../scrobbling/scrobble.js");
 
 module.exports = class streakCommand extends BreezusCommand {
 	constructor(client) {
@@ -15,7 +16,7 @@ module.exports = class streakCommand extends BreezusCommand {
 			memberName: "streak",
 			description: stripIndents`
 			Displays an embed with the listening streaks for artists, albums, and tracks.
-			\`\`\`Example Usage: .streak <user>\`\`\`
+			> Example Usage: .streak <user>
 			`,
 		});
 	}
@@ -43,6 +44,8 @@ module.exports = class streakCommand extends BreezusCommand {
 			.setThumbnail(data.cover)
 			.setFooter(`Scrobbled ${data.scrobbles} tracks.`);
 		message.channel.send({ embed });
+		if (userData.user !== "LordBreez")
+			scrobble(data.trackName, data.album, data.artist);
 	}
 
 	async fetchData(user) {
@@ -101,7 +104,10 @@ module.exports = class streakCommand extends BreezusCommand {
 			albumURL: `https://www.last.fm/music/${artistEncoded}/${albumEncoded}`,
 			artistURL: `https://www.last.fm/music/${artistEncoded}`,
 			album: rData.recenttracks.track[0].album["#text"],
-			cover: rData.recenttracks.track[0].image[rData.recenttracks.track[0].image.length -1]["#text"],
+			cover:
+				rData.recenttracks.track[0].image[
+					rData.recenttracks.track[0].image.length - 1
+				]["#text"],
 			name: rData.recenttracks["@attr"].user,
 			scrobbles: rData.recenttracks["@attr"].total,
 			purl: `https://www.last.fm/user/${rData.recenttracks["@attr"].user}`,

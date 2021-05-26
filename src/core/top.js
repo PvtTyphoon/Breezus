@@ -16,7 +16,7 @@ module.exports = class topCommand extends BreezusCommand {
 			memberName: "top",
 			description: stripIndents`
 			Displays the top artists, albums, and tracks.
-			\`\`\`Example Usage: .top <user>\`\`\`
+			> Example Usage: .top <user>
 			`,
 		});
 	}
@@ -72,7 +72,7 @@ module.exports = class topCommand extends BreezusCommand {
 			[Link to last.fm page](https://www.last.fm/user/${data.username}/library/albums)
 			${topAlbums.join("\n")}
 			`,
-			true,
+				true,
 			)
 			.addField(
 				`❯ Top 10 Artists`,
@@ -82,7 +82,7 @@ module.exports = class topCommand extends BreezusCommand {
 			}/library/artists)
 			${topArtists.join("\n")}
 			`,
-			true,
+				true,
 			)
 			.addField(
 				`❯ Library`,
@@ -148,7 +148,12 @@ module.exports = class topCommand extends BreezusCommand {
 		};
 		const trackData = await rp(trackOptions);
 
-		if (trackData.toptracks.track.length < 10 || albumData.topalbums.album.length < 10 || artistData.topartists.artist.length < 10) throw new notEnoughDataError(user);
+		if (
+			trackData.toptracks.track.length < 10 ||
+			albumData.topalbums.album.length < 10 ||
+			artistData.topartists.artist.length < 10
+		)
+			throw new notEnoughDataError(user);
 
 		const data = {
 			username: user,

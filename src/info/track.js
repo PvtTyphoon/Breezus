@@ -13,7 +13,7 @@ module.exports = class trackCommand extends BreezusCommand {
 			memberName: "track",
 			description: stripIndents`
 			Searches for track information on last.fm.
-			\`\`\`Example Usage: .track [track name]\`\`\`
+			> Example Usage: .track [track name]
 			`,
 		});
 	}
@@ -29,7 +29,7 @@ module.exports = class trackCommand extends BreezusCommand {
 		} catch (err) {
 			message.channel.send(stripIndents`
 			Last.fm failed to provide a complete wiki for this track.
-			`)
+			`);
 			return;
 		}
 		const embed = new BreezusEmbed(message).setDescription(stripIndents`

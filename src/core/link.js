@@ -14,7 +14,7 @@ module.exports = class linkCommand extends BreezusCommand {
 			memberName: "link",
 			description: stripIndents`
 			Searches for, and links to a last.fm profile.
-			\`\`\`Example Usage: .link <user>\`\`\`
+			> Example Usage: .link <user>
 			`,
 		});
 	}

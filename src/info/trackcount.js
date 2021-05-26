@@ -14,7 +14,7 @@ module.exports = class trackCountCommand extends BreezusCommand {
 			memberName: "trackcount",
 			description: stripIndents`
 			Displays the number of tracks in a users library.
-			\`\`\`Example Usage: .lib <user>\`\`\`
+			> Example Usage: .lib <user>
 			`,
 		});
 	}

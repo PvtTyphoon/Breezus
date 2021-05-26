@@ -1,7 +1,7 @@
-const { RichEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 const { colourGen } = require("../util/Util");
 
-module.exports = class BreezusEmbed extends RichEmbed {
+module.exports = class BreezusEmbed extends MessageEmbed {
 	constructor(message) {
 		super(message);
 		this.setColor(colourGen());

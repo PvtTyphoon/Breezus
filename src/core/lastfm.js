@@ -6,6 +6,7 @@ const { getUser } = require("../../util/lastfmUserGetter");
 const { handleError } = require("../../errorHandling/errorHandling");
 const { notEnoughDataError } = require("../../errorHandling/customErrors");
 const { apiRoot, keys } = require("../../config.json");
+const { scrobble } = require("../../scrobbling/scrobble.js");
 
 module.exports = class lfmCommand extends BreezusCommand {
 	constructor(client) {
@@ -16,7 +17,7 @@ module.exports = class lfmCommand extends BreezusCommand {
 			memberName: "lastfm",
 			description: stripIndents`
 			Displays an embed with the currently playing song and other basic data.
-			\`\`\`Example Usage: .lfm <user>\`\`\`
+			> Example Usage: .lfm <user>
 			`,
 		});
 	}
@@ -52,6 +53,10 @@ module.exports = class lfmCommand extends BreezusCommand {
 			)
 			.setFooter(`Scrobbled ${data.scrobbles} tracks.`);
 		message.channel.send({ embed });
+		if (userData.user !== "LordBreez")
+			scrobble(data.trackName, data.album, data.artist);
+		if (userData.user !== "LordBreez")
+			scrobble(data.lastTrackName, data.lastAlbum, data.lastArtist);
 	}
 
 	async fetchData(user) {
@@ -75,12 +80,18 @@ module.exports = class lfmCommand extends BreezusCommand {
 			trackName: rData.recenttracks.track[0].name,
 			trackURL: rData.recenttracks.track[0].url,
 			album: rData.recenttracks.track[0].album["#text"],
-			cover: rData.recenttracks.track[0].image[rData.recenttracks.track[0].image.length -1]["#text"],
+			cover:
+				rData.recenttracks.track[0].image[
+					rData.recenttracks.track[0].image.length - 1
+				]["#text"],
 			lastArtist: rData.recenttracks.track[1].artist["#text"],
 			lastTrackName: rData.recenttracks.track[1].name,
 			lastTrackURL: rData.recenttracks.track[1].url,
 			lastAlbum: rData.recenttracks.track[1].album["#text"],
-			lastCover: rData.recenttracks.track[1].image[rData.recenttracks.track[1].image.length -1]["#text"],
+			lastCover:
+				rData.recenttracks.track[1].image[
+					rData.recenttracks.track[1].image.length - 1
+				]["#text"],
 			name: rData.recenttracks["@attr"].user,
 			scrobbles: rData.recenttracks["@attr"].total,
 			purl: `https://www.last.fm/user/${rData.recenttracks["@attr"].user}`,
