@@ -1,15 +1,15 @@
 {
-	"register": "User does not seem to have a linked account, you can search for a last.fm profile by specifying a username.  Contact the bot owner to have your account linked.",
-	"api": "An unexpected network error has occured.  You're seeing this message because a more in-depth explanation isn't available yet, this is most likely a server-side error.",
-	"discord": "A discord API error has occured.  This is most likely a bad network request.  You can check Discord's status page here: https://status.discord.com/",
+	"register": "User does not seem to have a linked account, you can search for a last.fm profile by specifying a username. Contact the bot owner to have your account linked.",
+	"api": "An unexpected network error has occured. You're seeing this message because a more in-depth explanation isn't available yet, this is most likely a server-side error.",
+	"discord": "A discord API error has occured. This is most likely a bad network request. You can check Discord's status page here: https://status.discord.com/",
 	"generic": "An unexpected error occurred while running this command.",
 	"2": "Service unavailable.",
 	"3": "A request was made with an invalid method.",
 	"4": "Authentication failed.",
 	"5": "Invalid response format.  Requests may be made in JSON or XML.",
-	"6": "The search returned no results.  Please review your query.  Last.fm may also be having issues.",
+	"6": "The search returned no results. Please review your query. Last.fm may also be having issues.",
 	"7": "Invalid response specificed.",
-	"8": "Something went wrong.  We don't quite know what.",
+	"8": "Something went wrong. We don't quite know what.",
 	"9": "Invalid session token.",
 	"10": "Invalid API key.",
 	"11": "Service offline.  Try again in a bit.",
@@ -20,5 +20,5 @@
 	"401": "You are not authorised to access this resource.",
 	"403": "Accessing this resource is forbidden.",
 	"404": "Resource not found.",
-	"500": "Internal server error.  Last.fm returned a server error.  Since last.fm doesn't have a proper status page, you'll have to sit tight and try again in a bit."
+	"500": "Internal server error. Last.fm returned a server error. Since last.fm doesn't have a proper status page, you'll have to sit tight and try again in a bit."
 }
