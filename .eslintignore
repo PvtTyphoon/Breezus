@@ -1,7 +1,6 @@
-*.json
-*.JSON
-*.yml
-*.yaml
-*.md
-*.txt
+node_modules
+.vscode-test
+.vscode
+*.sh
+*.bat
 LICENSE

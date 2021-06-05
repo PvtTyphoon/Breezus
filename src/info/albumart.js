@@ -7,7 +7,7 @@ const { stripIndents } = require("common-tags");
 const { handleError } = require("../../errorHandling/errorHandling");
 const { paginationEmbed } = require("../../util/pagination");
 
-module.exports = class albumCommand extends BreezusCommand {
+module.exports = class albumartCommand extends BreezusCommand {
 	constructor(client) {
 		super(client, {
 			name: "albumart",

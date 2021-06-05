@@ -1,10 +1,50 @@
 [
 	{
+		"text": "DOOM",
+		"type": "PLAYING"
+	},
+	{
+		"text": "DOOM Eternal",
+		"type": "PLAYING"
+	},
+	{
+		"text": "The Ultimate DOOM",
+		"type": "PLAYING"
+	},
+	{
+		"text": "Project Brutality",
+		"type": "PLAYING"
+	},
+	{
+		"text": "Brutal DOOM 3.0",
+		"type": "PLAYING"
+	},
+	{
+		"text": "DOOM 3",
+		"type": "PLAYING"
+	},
+	{
+		"text": "DOOM II: Hell On Earth",
+		"type": "PLAYING"
+	},
+	{
+		"text": "DOOM 64",
+		"type": "PLAYING"
+	},
+	{
+		"text": "DOOM VFR",
+		"type": "PLAYING"
+	},
+	{
 		"text": "zoom zoom x27",
 		"type": "PLAYING"
 	},
 	{
 		"text": "Firewatch",
+		"type": "PLAYING"
+	},
+	{
+		"text": "Among Us",
 		"type": "PLAYING"
 	},
 	{
@@ -36,7 +76,15 @@
 		"type": "WATCHING"
 	},
 	{
+		"text": "Pyrocynical",
+		"type": "WATCHING"
+	},
+	{
 		"text": "Falling Inn Love",
+		"type": "WATCHING"
+	},
+	{
+		"text": "CallMeKevin",
 		"type": "WATCHING"
 	},
 	{

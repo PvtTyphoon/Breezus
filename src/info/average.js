@@ -11,7 +11,7 @@ module.exports = class averageCommand extends BreezusCommand {
 		super(client, {
 			name: "average",
 			aliases: ["averages", "avg", "sa", "averagescrobbles"],
-			group: "core",
+			group: "info",
 			memberName: "average",
 			description: stripIndents`
 			Displays the average scrobble count for users between multiple time periods.

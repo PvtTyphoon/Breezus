@@ -24,7 +24,7 @@ module.exports = class albumCommand extends BreezusCommand {
 		message.channel.startTyping();
 		message.channel.stopTyping();
 		const args = message.content.trim().split(/ +/g).slice(1);
-		if (!args[0]) message.reply("No query provided.");
+		if (!args[0]) return message.reply("No query provided.");
 		const query = args.join(" ");
 		try {
 			var data = await this.fetchAlbumData(query, message);

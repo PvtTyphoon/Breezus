@@ -13,10 +13,11 @@ const client = new CommandoClient({
 client.registry
 	.registerDefaultTypes()
 	.registerGroups([
-		["core", "Core Commands"],
-		["info", "Information lookup"],
-		["charts", "Visual and text based charts"],
-		["misc", "Miscellaneous commands"],
+		["core", "Core Commands."],
+		["info", "Information lookup."],
+		["charts", "Visual and text based charts."],
+		["genshin", "Genshin Impact wiki commands."],
+		["search", "Miscellaneous Commands utilising popular web APIs."]
 	])
 	.registerDefaultGroups()
 	.registerDefaultCommands({
